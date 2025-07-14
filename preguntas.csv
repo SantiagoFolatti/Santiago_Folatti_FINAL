@@ -1,0 +1,106 @@
+categoria,dificultad,pregunta,opcion_A,opcion_B,opcion_C,respuesta_correcta,puntos
+Marvel,Facil,Cual es el verdadero nombre de Iron Man?,Steve Rogers,Tony Stark,Bruce Banner,B,10
+Marvel,Facil,Cual es el nombre del martillo de Thor?,Mjolnir,Stormbreaker,Excalibur,A,10
+Marvel,Facil,Quien es el mejor amigo de Tony Stark?,Bruce Banner,Steve Rogers,Peter Parker,B,10
+Marvel,Facil,Como se llama el villano principal en Infinity War?,Ultron,Loki,Thanos,C,10
+Marvel,Facil,Que animal es Rocket?,Mapache,Zorro,Perro,A,10
+Marvel,Media,Que metal compone el escudo del Capitan America?,Adamantium,Vibranium,Titanio,B,20
+Marvel,Media,Quien lidera el grupo de los X-Men?,Cyclops,Profesor X,Wolverine,B,20
+Marvel,Media,Donde se encuentra la gema del alma?,Vormir,Titan,Nidavellir,A,20
+Marvel,Media,Como se llama el padre de Peter Quill?,Odin,Ego,Howard Stark,B,20
+Marvel,Media,En que pais se encuentra Wakanda?,Etiopia,Madagascar,Africa,B,20
+Marvel,Dificil,Como se llama la madre adoptiva de Loki?,Frigga,Hela,Freya,A,30
+Marvel,Dificil,En que planeta fue encontrado Gamora?,Ego,Vormir,Zen-Whoberi,C,30
+Marvel,Dificil,Cual es el nombre verdadero de Black Widow?,Yelena Belova,Natasha Romanoff,Wanda Maximoff,B,30
+Marvel,Dificil,Quien destruyo Asgard?,Loki,Hela,Thanos,B,30
+Marvel,Dificil,Que villano usa un traje con alas mecanicas?,Shocker,Vulture,Whiplash,B,30
+Harry Potter,Facil,Como se llama la lechuza de Harry Potter?,Hedwig,Crookshanks,Scabbers,A,10
+Harry Potter,Facil,Que casa de Hogwarts tiene como simbolo un leon?,Slytherin,Hufflepuff,Gryffindor,C,10
+Harry Potter,Facil,Como se llama el colegio de magia?,Ilvermorny,Hogwarts,Durmstrang,B,10
+Harry Potter,Facil,Quien es el director de Hogwarts?,Snape,Dumbledore,McGonagall,B,10
+Harry Potter,Facil,Quien es el mejor amigo de Harry?,Draco,Seamus,Ron,C,10
+Harry Potter,Media,Quien fue el padrino de Harry Potter?,Remus Lupin,Albus Dumbledore,Sirius Black,C,20
+Harry Potter,Media,Como se llama la profesora de transformaciones?,Trelawney,McGonagall,Sprout,B,20
+Harry Potter,Media,Quien es el guardabosques de Hogwarts?,Snape,Dobby,Hagrid,C,20
+Harry Potter,Media,Como se llama la hermana de Ron?,Hermione,Ginny,Luna,B,20
+Harry Potter,Media,Cual es el numero del anden para ir a Hogwarts?,9,9 y 3/4,10,B,20
+Harry Potter,Dificil,Cual es el segundo nombre de Tom Riddle?,Marvolo,Salazar,Severus,A,30
+Harry Potter,Dificil,Cual es el hechizo para repeler dementores?,Alohomora,Expecto Patronum,Crucio,B,30
+Harry Potter,Dificil,Como se llama el mapa magico que muestra Hogwarts?,Mapa del Merodeador,Mapa de Magos,Mapa Oscuro,A,30
+Harry Potter,Dificil,Cual es la sangre de Hermione?,Pura,Mestiza,Muggle,C,30
+Harry Potter,Dificil,Quien mato a Dobby?,Lucius Malfoy,Bellatrix Lestrange,Draco Malfoy,B,30
+Star Wars,Facil,Como se llama el droide acompanante de Luke Skywalker?,R2-D2,BB-8,C-3PO,A,10
+Star Wars,Facil,Como se llama el sable laser de color verde?,Sable de Obi-Wan,Sable de Yoda,Sable de Luke,C,10
+Star Wars,Facil,Cual es el nombre del planeta natal de Anakin?,Tatooine,Hoth,Naboo,A,10
+Star Wars,Facil,Quien es el padre de Luke?,Yoda,Obi-Wan,Darth Vader,C,10
+Star Wars,Facil,Como se llama el wookiee amigo de Han Solo?,Chewbacca,Yoda,Lando,A,10
+Star Wars,Media,Quien entreno a Luke Skywalker en Dagobah?,Obi-Wan Kenobi,Yoda,Mace Windu,B,20
+Star Wars,Media,Quien es el maestro de Darth Maul?,Darth Sidious,Count Dooku,Yoda,A,20
+Star Wars,Media,Como se llama la nave de Han Solo?,X-Wing,Millennium Falcon,TIE Fighter,B,20
+Star Wars,Media,Quien construyo a C-3PO?,Yoda,Luke,Anakin,C,20
+Star Wars,Media,Quien es el lider de la Primera Orden?,Kylo Ren,Snoke,Palpatine,B,20
+Star Wars,Dificil,Cual es el verdadero nombre de Darth Vader?,Anakin Skywalker,Obi-Wan Kenobi,Mace Windu,A,30
+Star Wars,Dificil,Cual es el nombre verdadero de Rey?,Rey Kenobi,Rey Skywalker,Rey Palpatine,C,30
+Star Wars,Dificil,Como se llama el planeta destruido por la Estrella de la Muerte?,Endor,Alderaan,Bespin,B,30
+Star Wars,Dificil,Quien mato a Snoke?,Luke,Rey,Kylo Ren,C,30
+Star Wars,Dificil,Cual es el nombre del droide de BB-8?,D-O,K-2SO,R5,A,30
+El Señor de los Anillos,Facil,Quien es el portador original del Anillo Unico?,Bilbo,Sauron,Frodo,B,10
+El Señor de los Anillos,Facil,Quien es el mejor amigo de Frodo?,Boromir,Gimli,Sam,C,10
+El Señor de los Anillos,Facil,Como se llama el mago blanco?,Gandalf,Saruman,Radagast,B,10
+El Señor de los Anillos,Facil,Que raza es Legolas?,Hobbit,Elfo,Humano,B,10
+El Señor de los Anillos,Facil,Donde vive Frodo?,Rohan,La Comarca,Mordor,B,10
+El Señor de los Anillos,Media,Quien destruye finalmente el Anillo Unico?,Frodo,Sam,Gollum,C,20
+El Señor de los Anillos,Media,Que criatura lleva a Frodo a Mordor?,Un troll,Gollum,Un Nazgul,B,20
+El Señor de los Anillos,Media,Como se llama el padre de Boromir?,Denethor,Elrond,Isildur,A,20
+El Señor de los Anillos,Media,Donde se forjo el Anillo Unico?,Rivendel,Monte del Destino,La Comarca,B,20
+El Señor de los Anillos,Media,Que animal ataca a Frodo en Minas Morgul?,Troll,Araña,Dragón,B,20
+El Señor de los Anillos,Dificil,Cual es el nombre completo de Aragorn?,Aragorn Elendil,Aragorn Elessar,Aragorn Isildur,B,30
+El Señor de los Anillos,Dificil,Como se llama el padre de Legolas?,Elrond,Thranduil,Celeborn,B,30
+El Señor de los Anillos,Dificil,Como se llama la espada de Aragorn?,Anduril,Narsil,Sting,A,30
+El Señor de los Anillos,Dificil,Que es un Balrog?,Un dragon,Un demonio,Un elfo oscuro,B,30
+El Señor de los Anillos,Dificil,Quien guia a la comunidad despues de la caida de Gandalf?,Frodo,Aragorn,Boromir,B,30
+DC Comics,Facil,¿Quién es el superhéroe conocido como 'El Hombre de Acero'?,Batman,Superman,Flash,B,10
+DC Comics,Facil,¿Cómo se llama el archienemigo de Batman?,El Pingüino,Dos Caras,El Guasón,C,10
+DC Comics,Facil,¿Qué objeto usa Linterna Verde para canalizar su poder?,Anillo,Bastón,Capa,A,10
+DC Comics,Facil,¿Qué periodista trabaja con Superman?,Lois Lane,Mary Jane,Barbara Gordon,A,10
+DC Comics,Facil,¿Qué ciudad protege Flash?,Gotham,Central City,Star City,B,10
+DC Comics,Media,¿Cuál es el verdadero nombre de Wonder Woman?,Diana Prince,Kara Danvers,Barbara Minerva,A,20
+DC Comics,Media,¿Cuál es el nombre del mayordomo de Bruce Wayne?,Jarvis,Alfred,James,B,20
+DC Comics,Media,¿Qué miembro de la Liga de la Justicia es de Atlantis?,Aquaman,Flash,Green Lantern,A,20
+DC Comics,Media,¿Quién es el villano principal en 'The Dark Knight Rises'?,Joker,Bane,Riddler,B,20
+DC Comics,Media,¿Cuál es el nombre del escuadrón de villanos reclutado por el gobierno?,Justice League,Avengers,Suicide Squad,C,20
+DC Comics,Dificil,¿Quién mató a los padres de Bruce Wayne?,Joker,Joe Chill,Harvey Dent,B,30
+DC Comics,Dificil,¿Cuál es el nombre kryptoniano de Superman?,Jor-El,Zod,Kal-El,C,30
+DC Comics,Dificil,¿Qué villano posee una mente brillante y es calvo?,Lex Luthor,Riddler,Penguin,A,30
+DC Comics,Dificil,¿Cómo se llama el evento que reinició el universo DC en los cómics?,Crisis Infinita,Flashpoint,Metal,B,30
+DC Comics,Dificil,¿Qué miembro de los Teen Titans es mitad robot?,Raven,Cyborg,Beast Boy,B,30
+Disney,Facil,¿Quién es la pareja de Mickey Mouse?,Daisy,Minnie,Clarabelle,B,10
+Disney,Facil,¿Cuál es el nombre del pez protagonista en 'Buscando a Nemo'?,Nemo,Dory,Marlin,A,10
+Disney,Facil,¿Quién canta 'Libre Soy' en Frozen?,Anna,Elsa,Olaf,B,10
+Disney,Facil,¿En qué película aparece el genio azul?,Hércules,Aladdin,Tarzán,B,10
+Disney,Facil,¿Qué animal es Dumbo?,Ratón,Elefante,Canguro,B,10
+Disney,Media,¿Qué princesa se disfraza de hombre para luchar en el ejército?,Ariel,Mulan,Pocahontas,B,20
+Disney,Media,¿Cómo se llama el padre de Simba?,Scar,Zazu,Mufasa,C,20
+Disney,Media,¿Cuál es el apellido de la familia de Los Increíbles?,Parr,Dash,Frozone,A,20
+Disney,Media,¿Qué villano es enemigo de Peter Pan?,Hook,Hades,Gaston,A,20
+Disney,Media,¿Qué tipo de animal es Baloo?,León,Oso,Tigre,B,20
+Disney,Dificil,¿Qué princesa tiene poderes curativos con su cabello?,Rapunzel,Aurora,Tiana,A,30
+Disney,Dificil,¿Cómo se llama el caballo de 'Enredados'?,Pascal,Flynn,Maximus,C,30
+Disney,Dificil,¿Qué experimento es Stitch?,626,001,999,A,30
+Disney,Dificil,¿Cómo se llama la madre de Bambi?,Bella,No se menciona,Flor,B,30
+Disney,Dificil,¿Quién es el villano de 'El Jorobado de Notre Dame'?,Jafar,Frollo,Hades,B,30
+Agatha All Along,Facil,¿Quién interpreta a Agatha Harkness?,Kathryn Hahn,Elizabeth Olsen,Teyonah Parris,A,10
+Agatha All Along,Facil,¿Cómo se llama el pueblo donde transcurre WandaVision?,Westview,Eastview,Northview,A,10
+Agatha All Along,Facil,¿Qué animal se transforma Agatha?,Cuervo,Perro,Gato,C,10
+Agatha All Along,Facil,¿De qué color es la magia de Agatha?,Roja,Morada,Azul,B,10
+Agatha All Along,Facil,¿Qué relación finge tener con Wanda?,Vecina,Hermana,Madre,A,10
+Agatha All Along,Media,¿Qué canción revela que Agatha manipuló todo?,This is Me,Agatha All Along,Wanda's Lament,B,20
+Agatha All Along,Media,¿Cuál era el falso nombre de Agatha en WandaVision?,Agnes,Angie,Ann,A,20
+Agatha All Along,Media,¿Qué animal convierte en insecto Agatha?,Perro,Pájaro,Conejo,B,20
+Agatha All Along,Media,¿Qué fecha se celebra en el episodio de Halloween?,31 de octubre,30 de noviembre,14 de febrero,A,20
+Agatha All Along,Media,¿Qué personaje queda atrapado en su sótano?,Tommy,Wanda,Mónica,C,20
+Agatha All Along,Dificil,¿En qué siglo nació Agatha?,XVI,XVII,XVIII,B,30
+Agatha All Along,Dificil,¿Qué banda compuso la canción 'Agatha All Along'?,Anderson-Lopez,Hans Zimmer,Alan Menken,A,30
+Agatha All Along,Dificil,¿Qué personaje es su hijo en los cómics?,Wiccan,Speed,Ninguno,C,30
+Agatha All Along,Dificil,¿Cuál es el nombre del conejo de Agatha?,Scratchy,Snickers,Mr. Bun,A,30
+Agatha All Along,Dificil,¿Qué piedra del infinito se asocia a su magia?,Mente,Realidad,Tiempo,B,30
