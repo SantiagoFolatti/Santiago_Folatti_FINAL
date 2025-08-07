@@ -83,15 +83,15 @@ def dividir_preguntas(preguntas: list) -> tuple:
 def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, dificultad: str) -> dict:
     mostrar_un_mensaje(f"🕹️ Turno del jugador {nombre}")
     jugador = jugar(preguntas, configuracion, dificultad)
-    guardar_estadisticas("Parcial2/estadisticas.csv", nombre, jugador)
+    guardar_estadisticas(r"Santiago_Folatti_FINAL\estadisticas.csv", nombre, jugador)
     return jugador
 
 def jugar_preguntas_y_respuestas():
     mostrar_inicio()
     nombre_jugador_1 = ingresar_nombre_jugador()
     nombre_jugador_2 = ingresar_nombre_jugador()
-    preguntas = leer_preguntas_csv("Parcial2/preguntas.csv")
-    configuracion = leer_configuracion("Parcial2/config.json")
+    preguntas = leer_preguntas_csv(r"Santiago_Folatti_FINAL\preguntas.csv")
+    configuracion = leer_configuracion(r"Santiago_Folatti_FINAL\config.json")
     dificultad = obtener_dificultad()
     
     preguntas_jugador_1, preguntas_jugador_2 = dividir_preguntas(preguntas)
