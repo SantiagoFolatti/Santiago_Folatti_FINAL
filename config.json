@@ -1,6 +1,7 @@
 {
     "modo": "neurotipico",
     "tiempo_por_pregunta": 15,
-    "cantidad_preguntas": 7,
-    "vidas": 3
+    "cantidad_preguntas": 6,
+    "vidas": 3,
+    "dificultad": "dificil"
 }

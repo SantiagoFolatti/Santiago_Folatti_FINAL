@@ -1,20 +1,19 @@
 from menu_pygame import mostrar_menu
-from configuracion import leer_configuracion
 from pantalla_configuracion import mostrar_configuracion
-from pantalla_puntajes import mostrar_puntajes
-from juego_normal import iniciar_juego_grafico
-
+import pygame
 
 def main():
-    while True:
-        opcion = mostrar_menu()
-        if opcion == "jugar":
-            config = leer_configuracion("Santiago_Folatti_FINAL/config.json")
-            iniciar_juego_grafico(config)
-        elif opcion == "configuracion":
-            mostrar_configuracion("Santiago_Folatti_FINAL/config.json")
-        elif opcion == "puntajes":
-            mostrar_puntajes("Santiago_Folatti_FINAL/estadisticas.csv")
+    pantalla_actual = "menu"
+    corriendo = True
 
+    while corriendo:
+        if pantalla_actual == "menu":
+            pantalla_actual = mostrar_menu()
+        elif pantalla_actual == "config":
+            pantalla_actual = mostrar_configuracion("Santiago_Folatti_FINAL\\config.json")
+        elif pantalla_actual == "salir":
+            corriendo = False
+
+    pygame.quit()
 if __name__ == "__main__":
     main()

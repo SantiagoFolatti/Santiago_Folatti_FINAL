@@ -26,20 +26,22 @@ def crear_boton(dimensiones, posicion, ventana,color_fondo=None, color_borde=Non
     boton["Dimensiones"] = dimensiones
     boton["Posicion"] = posicion
     boton["ColorBorde"] = color_borde
+    boton["ColorFondo"] = color_fondo
     boton["Presionado"] = False
     boton["Hover"] = False
+    boton["Esimagen"] = imagen
 
-    if imagen != None:
+    if boton["Esimagen"] != None:
         img = pygame.image.load(imagen)
         boton["Superficie"] = pygame.transform.scale(img, boton["Dimensiones"])
     else:
         tipo, tamaño = fuente
         fuente_render = pygame.font.SysFont(tipo, tamaño)
-        texto_renderizado = fuente_render.render(texto, True, "black")
+        texto_renderizado = fuente_render.render(texto, True, "white")
 
-        if color_fondo != None:
+        if boton["ColorFondo"] != None:
             superficie_boton = pygame.Surface(dimensiones)
-            superficie_boton.fill(color_fondo)
+            superficie_boton.fill(boton["ColorFondo"])
 
         # centrar texto
         rect_texto = texto_renderizado.get_rect(center=(dimensiones[0] // 2, dimensiones[1] // 2))
@@ -55,29 +57,36 @@ def crear_boton(dimensiones, posicion, ventana,color_fondo=None, color_borde=Non
 
     return boton
 
-def crear_botones(VENTANA):
-    boton_configuracion = crear_boton(dimensiones=(70, 70),posicion=(20, 20),ventana=VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\ruedita.png")
-    boton_jugar = crear_boton(dimensiones=(300, 80),posicion=(0, 200),ventana=VENTANA,fuente=("comic sans", 40),texto="Jugar",color_borde="grey",color_fondo="grey")
-    boton_opciones = crear_boton(dimensiones=(300, 80),posicion=(0, 300),ventana=VENTANA,fuente=("comic sans", 40),texto="Opciones",color_borde="grey",color_fondo="grey")
-    boton_puntajes = crear_boton(dimensiones=(300, 80),posicion=(0, 400),ventana=VENTANA,fuente=("comic sans", 40),texto="Puntajes",color_borde="grey",color_fondo="grey")
-    boton_menos_preg = crear_boton((70, 70), (150, 110), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp")
-    boton_mas_preg = crear_boton((70, 70), (580, 110), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp")
-    boton_menos_tiempo = crear_boton((70, 70), (150, 190), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp")
-    boton_mas_tiempo = crear_boton((70, 70), (580, 190), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp")
-    boton_menos_vidas = crear_boton((70, 70), (150, 270), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp")
-    boton_mas_vidas = crear_boton((70, 70), (580, 270), VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp")
-    boton_guardar = crear_boton( dimensiones=(300, 80), posicion=(250, 500), ventana=VENTANA, fuente=("comic sans", 40), texto="Guardar", color_borde="grey",color_fondo="white")
-    
-    lista_botones_menu = [boton_configuracion, boton_jugar, boton_opciones, boton_puntajes]
-    lista_botones_opciones = [boton_menos_preg, boton_mas_preg,boton_menos_tiempo, boton_mas_tiempo,boton_menos_vidas, boton_mas_vidas,boton_guardar]
+def crear_botones_menu(VENTANA):
+    botones_menu ={
+    "boton_configuracion" : crear_boton(dimensiones=(70, 70),posicion=(20, 20),ventana=VENTANA,imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\ruedita.png"),
+    "boton_jugar" : crear_boton(dimensiones=(300, 80),posicion=(0, 200),ventana=VENTANA,fuente=("comic sans", 40),texto="Jugar",color_borde="grey",color_fondo="grey"),
+    "boton_opciones" : crear_boton(dimensiones=(300, 80),posicion=(0, 300),ventana=VENTANA,fuente=("comic sans", 40),texto="Opciones",color_borde="grey",color_fondo="grey"),
+    "boton_puntajes" : crear_boton(dimensiones=(300, 80),posicion=(0, 400),ventana=VENTANA,fuente=("comic sans", 40),texto="Puntajes",color_borde="grey",color_fondo="grey")
+    }
+    return botones_menu
 
-    return lista_botones_menu,lista_botones_opciones
+def crear_botones_opciones(VENTANA):
+    botones_opciones = {
+        "menos_preguntas": crear_boton((70, 70), (150, 110), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp"),
+        "mas_preguntas":   crear_boton((70, 70), (580, 110), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp"),
+        "menos_tiempo":    crear_boton((70, 70), (150, 190), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp"),
+        "mas_tiempo":      crear_boton((70, 70), (580, 190), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp"),
+        "menos_vidas":     crear_boton((70, 70), (150, 270), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\-.webp"),
+        "mas_vidas":       crear_boton((70, 70), (580, 270), VENTANA, imagen=r"Santiago_Folatti_FINAL\imagenes_sonidospygame\+.webp"),
+        "guardar":         crear_boton((200, 60), (580, 500), VENTANA,fuente=("comic sans", 35), texto="Guardar",color_borde="grey", color_fondo="grey"),
+        "salir":            crear_boton((200, 60), (20, 500), VENTANA, fuente=("comic sans", 35), texto="Salir", color_borde="grey", color_fondo="grey"),
+        "facil":           crear_boton((150, 50), (150, 350), VENTANA, fuente=("comic sans", 30), texto="Fácil", color_borde="grey", color_fondo="grey"),
+        "media":           crear_boton((150, 50), (325, 350), VENTANA, fuente=("comic sans", 30), texto="Media", color_borde="grey", color_fondo="grey"),
+        "dificil":         crear_boton((150, 50), (500, 350), VENTANA, fuente=("comic sans", 30), texto="Difícil", color_borde="grey", color_fondo="grey"),
+    }
+    return botones_opciones
 
 def dibujar_boton(boton):
     boton["Ventana"].blit(boton["Superficie"], boton["Posicion"])
 
 def actualizar_hover_boton(boton, mouse_pos):
-    if boton["Rectangulo"].collidepoint(mouse_pos):
+    if boton["Rectangulo"].collidepoint(mouse_pos) and not boton["Esimagen"]:
         pygame.draw.rect(boton["Ventana"], "black", boton["Rectangulo"], 4)  
         boton["Hover"] = True
     else:
