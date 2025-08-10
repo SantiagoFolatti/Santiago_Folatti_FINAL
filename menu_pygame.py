@@ -47,3 +47,19 @@ def checkear_accion_botones(botones, evento):
 def resetear_botones(botones):
     for boton in botones.values():
         boton["Presionado"] = False
+
+
+def ir_a_configuracion():
+    return "configuracion"
+
+def ir_a_opciones():
+    return "opciones"
+
+def ir_a_puntajes():
+    return "puntajes"
+
+def ir_a_menu():
+    return "menu"
+
+def ir_a_jugar():
+    return "jugar"
