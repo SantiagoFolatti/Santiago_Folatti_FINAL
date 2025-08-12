@@ -1,7 +1,7 @@
 import pygame
 import sys
 from estadisticas import leer_estadisticas, ordenar_estadisticas_por_puntaje
-from menu_pygame import dibujar_texto
+from pantalla_configuracion import dibujar_texto
 
 # Inicializar pygame (si aún no lo hiciste en main)
 pygame.init()
