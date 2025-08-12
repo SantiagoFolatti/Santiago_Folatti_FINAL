@@ -70,9 +70,9 @@ def manejar_click_config(botones, config, evento, path_config):
         accion_dificultad(config, "dificil")
     elif botones["guardar"]["Presionado"]:
         guardar_configuracion(path_config, config)
-        resultado = accion_guardar(path_config, config)
+        resultado = "guardar"
     elif botones["salir"]["Presionado"]:
-        resultado = accion_salir()
+        resultado = "salir"
 
     return resultado
 
