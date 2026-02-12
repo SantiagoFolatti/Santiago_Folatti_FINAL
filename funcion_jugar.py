@@ -13,7 +13,7 @@ def actualizar_puntajes(jugador: dict, puntos: int, respondida: bool):
     if respondida:
         jugador["respondidas"] += 1
 
-def calcular_estadisicas(jugador: dict,limite_preguntas:int) -> dict:
+def calcular_estadisticas(jugador: dict,limite_preguntas:int) -> dict:
     if jugador["respondidas"] > 0:
         jugador["porcentaje_aciertos"] = (jugador["respuestas_correctas"] / limite_preguntas) * 100  
         jugador["promedio_puntos"] = jugador["puntaje_total"] / jugador["respondidas"]
@@ -67,7 +67,7 @@ def jugar(preguntas: list, configuracion: dict, dificultad: str) -> dict:
     
     verificar_vidas(jugador)
 
-    jugador = calcular_estadisicas(jugador,limite_preguntas)
+    jugador = calcular_estadisticas(jugador,limite_preguntas)
     return jugador
 
 ###############################################################################################################################################
@@ -83,15 +83,15 @@ def dividir_preguntas(preguntas: list) -> tuple:
 def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, dificultad: str) -> dict:
     mostrar_un_mensaje(f"🕹️ Turno del jugador {nombre}")
     jugador = jugar(preguntas, configuracion, dificultad)
-    guardar_estadisticas(r"Santiago_Folatti_FINAL\estadisticas.csv", nombre, jugador)
+    guardar_estadisticas(r"estadisticas.csv", nombre, jugador)
     return jugador
 
 def jugar_preguntas_y_respuestas():
     mostrar_inicio()
     nombre_jugador_1 = ingresar_nombre_jugador()
     nombre_jugador_2 = ingresar_nombre_jugador()
-    preguntas = leer_preguntas_csv(r"Santiago_Folatti_FINAL\preguntas.csv")
-    configuracion = leer_configuracion(r"Santiago_Folatti_FINAL\config.json")
+    preguntas = leer_preguntas_csv(r"preguntas.csv")
+    configuracion = leer_configuracion(r"config.json")
     dificultad = obtener_dificultad()
     
     preguntas_jugador_1, preguntas_jugador_2 = dividir_preguntas(preguntas)

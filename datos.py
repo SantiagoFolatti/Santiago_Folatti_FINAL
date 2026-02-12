@@ -1,4 +1,5 @@
 import re
+
 def leer_preguntas_csv(path:str) -> list:
     try:
         lista = []

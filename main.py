@@ -20,17 +20,17 @@ def main():
         mostrar_menu()
         opcion = input("Seleccione una opción (1-5): ")
         if opcion == "1":
-            cambiar_configuracion(r"Santiago_Folatti_FINAL\config.json")
+            cambiar_configuracion(r"config.json")
         elif opcion == "2":
             jugar_preguntas_y_respuestas()
         elif opcion == "3":
             mostrar_un_mensaje("\n🕹️ ¡Bienvenido al Ta-Te-Ti!")
             juego()
         elif opcion == "4":
-            estadisticas = leer_estadisticas(r"Santiago_Folatti_FINAL\estadisticas.csv")
+            estadisticas = leer_estadisticas(r"estadisticas.csv")
             mostrar_estadisticas(estadisticas, "📊 --- Estadísticas Guardadas --- 📊")
         elif opcion == "5":
-            estadisticas = leer_estadisticas(r"Santiago_Folatti_FINAL\estadisticas.csv")
+            estadisticas = leer_estadisticas(r"estadisticas.csv")
             ordenar_estadisticas_por_puntaje(estadisticas)
             mostrar_estadisticas(estadisticas,"📊 --- Ranking de Jugadores --- 📊")
         elif opcion == "6":
