@@ -3,7 +3,7 @@ import sys
 import random
 from funcion_jugar import calcular_estadisticas, actualizar_puntajes
 from estado_jugador import inicializar_jugador, aplicar_multiplicador,procesar_estado_mensaje
-from pantalla_opciones import dibujar_texto
+from pantalla_configuracion import dibujar_texto
 
 # --- Colores y pantalla ---
 ANCHO, ALTO = 800, 600
@@ -74,7 +74,7 @@ def obtener_respuesta_click(botones):
 # -------------------------
 # FUNCIÓN PRINCIPAL DEL JUEGO
 # -------------------------
-def jugar_pygame(preguntas: list, configuracion: dict, dificultad: str) -> dict:
+def jugar_pygame(preguntas: list, configuracion: dict) -> dict:
     """Lógica del juego, conectada con la vista en Pygame"""
     preguntas_restantes = preguntas.copy()
     random.shuffle(preguntas_restantes)
@@ -118,3 +118,5 @@ def jugar_pygame(preguntas: list, configuracion: dict, dificultad: str) -> dict:
     pygame.time.wait(3000)
 
     return jugador
+
+

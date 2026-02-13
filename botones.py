@@ -103,15 +103,14 @@ def resetear_botones(botones):
 
 def crear_botones_menu(VENTANA):
     botones_menu ={
-    "boton_opciones" : crear_boton(dimensiones=(70, 70),posicion=(20, 20),ventana=VENTANA,imagen=r"C:\Users\user\Downloads\Santiago_Folatti_FINAL-main\Santiago_Folatti_FINAL-main\imagenes_sonidospygame\ruedita.png"),
     "boton_jugar" : crear_boton(dimensiones=(300, 80),posicion=(0, 200),ventana=VENTANA,fuente=("comic sans", 40),texto="Jugar",color_borde="grey",color_fondo="grey"),
     "boton_configuracion" : crear_boton(dimensiones=(300, 80),posicion=(0, 300),ventana=VENTANA,fuente=("comic sans", 40),texto="Configuracion",color_borde="grey",color_fondo="grey"),
     "boton_puntajes" : crear_boton(dimensiones=(300, 80),posicion=(0, 400),ventana=VENTANA,fuente=("comic sans", 40),texto="Puntajes",color_borde="grey",color_fondo="grey")
     }
     return botones_menu
 
-def crear_botones_opciones(VENTANA):
-    botones_opciones = {
+def crear_botones_configuracion(VENTANA):
+    botones_config = {
         "menos_preguntas": crear_boton((70, 70), (150, 110), VENTANA, imagen=r"C:\Users\user\Downloads\Santiago_Folatti_FINAL-main\Santiago_Folatti_FINAL-main\imagenes_sonidospygame\-.webp"),
         "mas_preguntas":   crear_boton((70, 70), (580, 110), VENTANA, imagen=r"C:\Users\user\Downloads\Santiago_Folatti_FINAL-main\Santiago_Folatti_FINAL-main\imagenes_sonidospygame\+.webp"),
         "menos_tiempo":    crear_boton((70, 70), (150, 190), VENTANA, imagen=r"C:\Users\user\Downloads\Santiago_Folatti_FINAL-main\Santiago_Folatti_FINAL-main\imagenes_sonidospygame\-.webp"),
@@ -124,4 +123,4 @@ def crear_botones_opciones(VENTANA):
         "media":           crear_boton((150, 50), (325, 350), VENTANA, fuente=("comic sans", 30), texto="Media", color_borde="grey", color_fondo="grey"),
         "dificil":         crear_boton((150, 50), (500, 350), VENTANA, fuente=("comic sans", 30), texto="Difícil", color_borde="grey", color_fondo="grey"),
     }
-    return botones_opciones
+    return botones_config
