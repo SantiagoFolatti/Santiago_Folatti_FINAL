@@ -49,3 +49,12 @@ def verificar_victoria(n, tablero, jugador):
     elif verificar_diagonal_secundaria(n, tablero, jugador):
         victoria = True
     return victoria
+
+def verificar_empate(tablero):
+    empate = True
+    for i in range(len(tablero)):
+        for j in range(len(tablero[i])):
+            if tablero[i][j] == " ":
+                empate = False
+                return False
+    return empate

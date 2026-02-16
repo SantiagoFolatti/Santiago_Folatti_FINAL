@@ -18,15 +18,19 @@ def jugar_ronda(pregunta: dict, tiempo_max: int):
     resultado["tiempo_usado"] = tiempo_usado
     return resultado
 
-def evaluar_respuesta(pregunta: dict, respuesta_usuario: str, tiempo_usado: float, tiempo_max: int) -> dict:
+def evaluar_respuesta(pregunta: dict,respuesta_usuario: str,tiempo_usado: float,tiempo_max: int) -> dict:
     resultado = {"puntos_obtenidos": 0, "respondida": False, "estado": ""}
-    if tiempo_usado <= tiempo_max:
-        resultado["respondida"] = True
-        if verificar_respuesta(pregunta, respuesta_usuario):
-            resultado["puntos_obtenidos"] = pregunta["puntos"]
-            resultado["estado"] = "correcto"
-        else:
-            resultado["estado"] = "incorrecto"
-    else:
+
+    if tiempo_usado > tiempo_max or respuesta_usuario is None:
         resultado["estado"] = "tiempo_agotado"
+        return resultado
+
+    resultado["respondida"] = True
+
+    if verificar_respuesta(pregunta, respuesta_usuario):
+        resultado["puntos_obtenidos"] = pregunta["puntos"]
+        resultado["estado"] = "correcto"
+    else:
+        resultado["estado"] = "incorrecto"
+
     return resultado
