@@ -15,3 +15,12 @@ def seleccionar_pregunta_por_categoria(preguntas_restantes: list, categoria_eleg
             nuevas_preguntas.append(pregunta)
             
     return pregunta_seleccionada, nuevas_preguntas
+
+def seleccionar_preguntas_dificultad(preguntas,dificultad):
+    preguntas_dificultad = []
+    
+    for pregunta in preguntas:
+        if pregunta["dificultad"] == dificultad:
+            preguntas_dificultad.append(pregunta)
+    
+    return preguntas_dificultad

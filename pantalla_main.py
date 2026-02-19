@@ -8,7 +8,6 @@ from configuracion import leer_configuracion
 from patalla_minijuego import mostrar_minijuego
 from botones import inicializar_ventana
 
-
 def main():
     VENTANA,FONDO,CLICK_SONIDO,FUENTE= inicializar_ventana()
     pantalla_actual = "menu"

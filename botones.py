@@ -1,7 +1,8 @@
 import pygame
+from colores_enum import Color
 
 def inicializar_ventana(ancho=800, alto=600, titulo="TRIVIA PELÍCULAS", 
-    ruta_fondo=r"imagenes_sonidospygame\fondo.jpg",
+    ruta_fondo=r"imagenes_sonidospygame\FONDO1.png",
     ruta_icono=r"imagenes_sonidospygame\utn_icono.jpg", 
     ruta_sonido_click=r"imagenes_sonidospygame\mouse-click-290204.mp3",
     tipo_fuente="Comic Sans", tamaño_fuente=28):
@@ -23,19 +24,19 @@ def inicializar_ventana(ancho=800, alto=600, titulo="TRIVIA PELÍCULAS",
     return VENTANA, fondo, click_sonido, fuente
 
 
-def crear_boton(dimensiones, posicion, ventana, color_fondo=None, color_borde=None, imagen=None, fuente=None, texto=None):
+def crear_boton(ventana,dimensiones,posicion,color_fondo=None,color_borde=None,fuente=None,texto=None,color_texto = None,imagen=None):
     boton = {
         "Ventana": ventana,
         "Dimensiones": dimensiones,
         "Posicion": posicion,
-        "ColorBorde": color_borde,
         "ColorFondo": color_fondo,
+        "ColorBorde": color_borde,
         "Presionado": False,
         "Hover": False,
-        "Esimagen": imagen is not None,
-        "Texto": texto,
         "Fuente": fuente,
-        "ColorTexto": "white"
+        "Texto": texto,
+        "Esimagen": imagen is not None,
+        "ColorTexto": color_texto
     }
     if imagen:
         img = pygame.image.load(imagen)
@@ -46,17 +47,17 @@ def crear_boton(dimensiones, posicion, ventana, color_fondo=None, color_borde=No
         texto_renderizado = fuente_render.render(texto, True, boton["ColorTexto"])
 
         superficie_boton = pygame.Surface(dimensiones)
+        
         if color_fondo:
             superficie_boton.fill(color_fondo)
 
+        if color_borde:
+            pygame.draw.rect(superficie_boton, color_borde, superficie_boton.get_rect(), 2)
+            
         rect_texto = texto_renderizado.get_rect(center=(dimensiones[0] // 2, dimensiones[1] // 2))
         superficie_boton.blit(texto_renderizado, rect_texto)
         
-        if color_borde:
-            pygame.draw.rect(superficie_boton, color_borde, superficie_boton.get_rect(), 2)
-
         boton["Superficie"] = superficie_boton
-
     boton["Rectangulo"] = boton["Superficie"].get_rect(topleft=posicion)
 
     return boton
@@ -72,7 +73,6 @@ def dibujar_lista_botones(lista):
 
 def detectar_click(botones, evento,click_sonido):
     resetear_botones(botones)
-    
     for boton in botones.values():
         if boton["Rectangulo"].collidepoint(evento.pos):
             boton["Presionado"] = True
@@ -85,22 +85,13 @@ def resetear_botones(botones):
     for boton in botones.values():
         boton["Presionado"] = False
 
-def centrar_botones_en_x(lista_botones):
-    for boton in lista_botones:
-        ancho_ventana = boton["Ventana"].get_width()
-        ancho_boton = boton["Dimensiones"][0]
-        nueva_pos_x = (ancho_ventana - ancho_boton) // 2
-        boton["Posicion"] = (nueva_pos_x, boton["Posicion"][1])
-        boton["Rectangulo"].topleft = boton["Posicion"]
-
 def actualizar_hover_boton(boton, mouse_pos):
     if boton["Rectangulo"].collidepoint(mouse_pos) and not boton["Esimagen"]:
         pygame.draw.rect(boton["Ventana"], "black", boton["Rectangulo"], 4)  
         boton["Hover"] = True
-    else:
-        if boton["ColorBorde"]:
-            pygame.draw.rect(boton["Ventana"], boton["ColorBorde"], boton["Rectangulo"], 2)
-            boton["Hover"] = False
+    elif boton["ColorBorde"]:
+        pygame.draw.rect(boton["Ventana"], boton["ColorBorde"], boton["Rectangulo"], 2)
+        boton["Hover"] = False
 
 def repintar_boton(boton):
     superficie = pygame.Surface(boton["Dimensiones"])
@@ -110,48 +101,46 @@ def repintar_boton(boton):
     fuente = pygame.font.SysFont(tipo, tamaño)
 
     texto_render = fuente.render(boton["Texto"], True, boton["ColorTexto"])
-    rect_texto = texto_render.get_rect(
-        center=(boton["Dimensiones"][0] // 2, boton["Dimensiones"][1] // 2)
-    )
+    rect_texto = texto_render.get_rect(center=(boton["Dimensiones"][0] // 2, boton["Dimensiones"][1] // 2))
 
     superficie.blit(texto_render, rect_texto)
 
-    if boton["ColorBorde"]:
-        pygame.draw.rect(superficie, boton["ColorBorde"], superficie.get_rect(), 2)
+    # if boton["ColorBorde"]:
+    #     pygame.draw.rect(superficie, boton["ColorBorde"], superficie.get_rect(), 2)
 
     boton["Superficie"] = superficie
 
 
 def botones_menu(VENTANA):
     botones_menu ={
-    "boton_jugar" : crear_boton(dimensiones=(300, 80),posicion=(0, 100),ventana=VENTANA,fuente=("comic sans", 40),texto="Jugar",color_borde="grey",color_fondo="grey"),
-    "boton_minijuego" : crear_boton(dimensiones=(300, 80),posicion=(0, 200),ventana=VENTANA,fuente=("comic sans", 40),texto="Minijuego",color_borde="grey",color_fondo="grey"),
-    "boton_configuracion" : crear_boton(dimensiones=(300, 80),posicion=(0, 300),ventana=VENTANA,fuente=("comic sans", 40),texto="Configuracion",color_borde="grey",color_fondo="grey"),
-    "boton_puntajes" : crear_boton(dimensiones=(300, 80),posicion=(0, 400),ventana=VENTANA,fuente=("comic sans", 40),texto="Puntajes",color_borde="grey",color_fondo="grey")
+    "boton_jugar" : crear_boton(VENTANA,(300, 80),(250, 100),"grey","grey",("comic sans", 40),"Jugar","white"),
+    "boton_minijuego" : crear_boton(VENTANA,(300, 80),(250, 200),"grey","grey",("comic sans", 40),"Minijuego","white"),
+    "boton_configuracion" : crear_boton(VENTANA,(300, 80),(250, 300),"grey","grey",("comic sans", 40),"Configuracion","white"),
+    "boton_puntajes" : crear_boton(VENTANA,(300, 80),(250, 400),"grey","grey",("comic sans", 40),"Puntajes","white")
     }
     return botones_menu
 
 def botones_configuracion(VENTANA):
     botones_config = {
-        "menos_preguntas": crear_boton((60, 60), (490, 110), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_preguntas":   crear_boton((60, 60), (550, 110), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "menos_tiempo":    crear_boton((60, 60), (490, 190), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_tiempo":      crear_boton((60, 60), (550, 190), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "menos_vidas":     crear_boton((60, 60), (490, 270), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_vidas":       crear_boton((60, 60), (550, 270), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "guardar":         crear_boton((180, 60), (580, 500), VENTANA,fuente=("comic sans", 35), texto="Guardar",color_borde="grey", color_fondo="grey"),
-        "salir":           crear_boton((180, 60), (20, 500), VENTANA, fuente=("comic sans", 35), texto="Salir", color_borde="grey", color_fondo="grey"),
-        "Facil":           crear_boton((150, 50), (150, 380), VENTANA, fuente=("comic sans", 30), texto="Fácil", color_borde="grey", color_fondo="grey"),
-        "Media":           crear_boton((150, 50), (325, 380), VENTANA, fuente=("comic sans", 30), texto="Media", color_borde="grey", color_fondo="grey"),
-        "Dificil":         crear_boton((150, 50), (500, 380), VENTANA, fuente=("comic sans", 30), texto="Difícil", color_borde="grey", color_fondo="grey"),
+        "menos_preguntas": crear_boton(VENTANA,(45, 45), (490, 125),imagen=r"imagenes_sonidospygame\-.png"),
+        "mas_preguntas":   crear_boton(VENTANA,(45, 45), (550, 125),imagen=r"imagenes_sonidospygame\+.png"),
+        "menos_tiempo":    crear_boton(VENTANA,(45, 45), (490, 205),imagen=r"imagenes_sonidospygame\-.png"),
+        "mas_tiempo":      crear_boton(VENTANA,(45, 45), (550, 205),imagen=r"imagenes_sonidospygame\+.png"),
+        "menos_vidas":     crear_boton(VENTANA,(45, 45), (490, 285),imagen=r"imagenes_sonidospygame\-.png"),
+        "mas_vidas":       crear_boton(VENTANA,(45, 45), (550, 285),imagen=r"imagenes_sonidospygame\+.png"),
+        "guardar":         crear_boton(VENTANA,(180, 60), (580, 500),"grey","grey",("comic sans", 35),"Guardar","white"),
+        "salir":           crear_boton(VENTANA,(180, 60), (20, 500),"grey","grey",("comic sans", 35),"Salir","white"),
+        "Facil":           crear_boton(VENTANA,(150, 50), (150, 380),"grey","grey",("comic sans", 30),"Fácil","white"),
+        "Media":           crear_boton(VENTANA,(150, 50), (325, 380),"grey","grey",("comic sans", 30),"Media","white"),
+        "Dificil":         crear_boton(VENTANA,(150, 50), (500, 380),"grey","grey",("comic sans", 30),"Difícil","white"),
     }
     return botones_config
 
 
 def botones_opciones(VENTANA,pregunta):
     botones_opciones = {
-        "A": crear_boton((520, 60), (140, 260), VENTANA,fuente=("comic sans", 35),texto="A: " + pregunta["opciones"]["A"],color_borde="grey", color_fondo="grey"),
-        "B": crear_boton((520, 60), (140, 340), VENTANA,fuente=("comic sans", 35),texto="B: " + pregunta["opciones"]["B"],color_borde="grey", color_fondo="grey"),
-        "C": crear_boton((520, 60), (140, 420), VENTANA,fuente=("comic sans", 35),texto="C: " + pregunta["opciones"]["C"],color_borde="grey", color_fondo="grey"),
+        "A": crear_boton(VENTANA,(520, 60), (140, 260),"white","white",("comic sans", 35),"A: " + pregunta["opciones"]["A"],Color.AZUL_OSCURO.value),
+        "B": crear_boton(VENTANA,(520, 60), (140, 340),"white","white",("comic sans", 35),"B: " + pregunta["opciones"]["B"],Color.AZUL_OSCURO.value),
+        "C": crear_boton(VENTANA,(520, 60), (140, 420),"white","white",("comic sans", 35),"C: " + pregunta["opciones"]["C"],Color.AZUL_OSCURO.value),
     }
     return botones_opciones

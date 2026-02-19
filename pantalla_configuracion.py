@@ -17,7 +17,7 @@ def resaltar_dificultad(botones,config):
     for clave in ["Facil", "Media", "Dificil"]:
         if config["dificultad"] == clave:
             botones[clave]["ColorFondo"] = Color.GRIS_OSCURO.value
-            botones[clave]["ColorBorde"] = Color.GRIS_CLARO.value
+            botones[clave]["ColorBorde"] = Color.NEGRO.value
         else:
             botones[clave]["ColorFondo"] = Color.GRIS_CLARO.value
             botones[clave]["ColorBorde"] = Color.GRIS_CLARO.value
@@ -26,12 +26,14 @@ def resaltar_dificultad(botones,config):
 
 
 def dibujar_configuracion(VENTANA,FUENTE,config, botones):
-    VENTANA.fill(Color.FONDO.value) 
+    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO CONFIGURACION.png")
+    FONDO = pygame.transform.scale(FONDO,(800,600))
+    VENTANA.blit(FONDO,(0,0))
     
     dibujar_texto_centrado(VENTANA,FUENTE,"CONFIGURACIÓN DEL JUEGO",30,Color.TEXTO.value)
-    dibujar_texto(VENTANA,FUENTE,f"Preguntas:  {config['cantidad_preguntas']}",195,125,Color.TEXTO.value)
-    dibujar_texto(VENTANA,FUENTE,f"Tiempo: {config['tiempo_por_pregunta']} seg",195,205,Color.TEXTO.value)
-    dibujar_texto(VENTANA,FUENTE,f"Vidas:  {config['vidas']}",195,285,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"PREGUNTAS:  {config['cantidad_preguntas']}",195,125,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"TIEMPO: {config['tiempo_por_pregunta']} seg",195,205,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"VIDAS:  {config['vidas']}",195,285,Color.TEXTO.value)
     
     resaltar_dificultad(botones,config)
     dibujar_lista_botones(botones.values())

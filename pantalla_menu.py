@@ -1,10 +1,8 @@
 import pygame
-from botones import botones_menu,detectar_click, centrar_botones_en_x, dibujar_lista_botones
+from botones import botones_menu,detectar_click, dibujar_lista_botones
 
 def mostrar_menu(VENTANA,CLICK_SONIDO,FONDO):
     botones = botones_menu(VENTANA)
-    centrar_botones_en_x([botones["boton_jugar"],botones["boton_minijuego"],botones["boton_configuracion"],botones["boton_puntajes"]])
-
 
     while True:
         for evento in pygame.event.get():
@@ -27,7 +25,7 @@ def mostrar_menu(VENTANA,CLICK_SONIDO,FONDO):
                     return "puntajes"
 
     
-        VENTANA.blit(FONDO, (0, 0))
+        VENTANA.blit(FONDO,(0,0))
         dibujar_lista_botones(botones.values())
         pygame.display.update()
 

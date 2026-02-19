@@ -42,7 +42,9 @@ def dibujar_jugadores(VENTANA,FUENTE,estadisticas):
 
 
 def dibujar_puntajes(VENTANA,FUENTE,estadisticas):
-    VENTANA.fill(Color.FONDO.value)
+    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO TOPS (2).png")
+    FONDO = pygame.transform.scale(FONDO,(800,600))
+    VENTANA.blit(FONDO,(0,0))
     dibujar_texto_centrado(VENTANA,FUENTE,"Ranking de Jugadores",20,Color.TEXTO.value)
     dibujar_encabezados(VENTANA,FUENTE)
     dibujar_jugadores(VENTANA,FUENTE,estadisticas)
