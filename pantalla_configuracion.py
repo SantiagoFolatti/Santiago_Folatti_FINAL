@@ -1,6 +1,6 @@
 import pygame
 from configuracion import leer_configuracion, guardar_configuracion
-from botones import botones_configuracion, dibujar_lista_botones, detectar_click
+from botones import botones_configuracion,repintar_boton,dibujar_lista_botones, detectar_click
 from colores_enum import Color
 
 
@@ -8,28 +8,37 @@ def dibujar_texto(VENTANA,FUENTE,texto, x, y, color=Color.NEGRO.value):
     render = FUENTE.render(texto, True, color)
     VENTANA.blit(render, (x, y))
 
-def dibujar_configuracion(VENTANA,FUENTE,config, botones):
-    VENTANA.fill(Color.LAVANDA.value)
-    
-    dibujar_texto(VENTANA,FUENTE,"CONFIGURACIÓN DEL JUEGO", 220, 30)
-    dibujar_texto(VENTANA,FUENTE,f"Preguntas: {config['cantidad_preguntas']}", 290, 125)
-    dibujar_texto(VENTANA,FUENTE,f"Tiempo por pregunta: {config['tiempo_por_pregunta']} seg", 220, 205)
-    dibujar_texto(VENTANA,FUENTE,f"Vidas: {config['vidas']}", 310, 285)
-    dibujar_texto(VENTANA,FUENTE,f"Dificultad: {config['dificultad'].capitalize()}", 290, 420)
+def dibujar_texto_centrado(VENTANA, FUENTE, texto, y, color):
+    render = FUENTE.render(texto, True, color)
+    x = (VENTANA.get_width() - render.get_width()) // 2
+    VENTANA.blit(render, (x, y))
 
-    # Resaltar dificultad
+def resaltar_dificultad(botones,config):
     for clave in ["Facil", "Media", "Dificil"]:
         if config["dificultad"] == clave:
-            botones[clave]["ColorBorde"] = "black"
+            botones[clave]["ColorFondo"] = Color.GRIS_OSCURO.value
+            botones[clave]["ColorBorde"] = Color.GRIS_CLARO.value
         else:
-            botones[clave]["ColorBorde"] = "grey"
+            botones[clave]["ColorFondo"] = Color.GRIS_CLARO.value
+            botones[clave]["ColorBorde"] = Color.GRIS_CLARO.value
 
+        repintar_boton(botones[clave])
+
+
+def dibujar_configuracion(VENTANA,FUENTE,config, botones):
+    VENTANA.fill(Color.FONDO.value) 
+    
+    dibujar_texto_centrado(VENTANA,FUENTE,"CONFIGURACIÓN DEL JUEGO",30,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"Preguntas:  {config['cantidad_preguntas']}",195,125,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"Tiempo: {config['tiempo_por_pregunta']} seg",195,205,Color.TEXTO.value)
+    dibujar_texto(VENTANA,FUENTE,f"Vidas:  {config['vidas']}",195,285,Color.TEXTO.value)
+    
+    resaltar_dificultad(botones,config)
     dibujar_lista_botones(botones.values())
     pygame.display.update()
     
 def accion_sumar(clave_config, config):
     config[clave_config] += 1
-
 
 def accion_restar(clave_config, config, minimo):
     if config[clave_config] > minimo:
@@ -71,14 +80,12 @@ def mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,path_config):
     config = leer_configuracion(path_config)
     acciones = diccionario_acciones(config, path_config)
     
-    
     while True:
         dibujar_configuracion(VENTANA,FUENTE,config, botones)
 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return "salir"
-            
             
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 boton = detectar_click(botones, evento, CLICK_SONIDO)

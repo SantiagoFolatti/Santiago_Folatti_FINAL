@@ -133,25 +133,25 @@ def botones_menu(VENTANA):
 
 def botones_configuracion(VENTANA):
     botones_config = {
-        "menos_preguntas": crear_boton((70, 70), (150, 110), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_preguntas":   crear_boton((70, 70), (580, 110), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "menos_tiempo":    crear_boton((70, 70), (150, 190), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_tiempo":      crear_boton((70, 70), (580, 190), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "menos_vidas":     crear_boton((70, 70), (150, 270), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
-        "mas_vidas":       crear_boton((70, 70), (580, 270), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
-        "guardar":         crear_boton((200, 60), (580, 500), VENTANA,fuente=("comic sans", 35), texto="Guardar",color_borde="grey", color_fondo="grey"),
-        "salir":            crear_boton((200, 60), (20, 500), VENTANA, fuente=("comic sans", 35), texto="Salir", color_borde="grey", color_fondo="grey"),
-        "Facil":           crear_boton((150, 50), (150, 350), VENTANA, fuente=("comic sans", 30), texto="Fácil", color_borde="grey", color_fondo="grey"),
-        "Media":           crear_boton((150, 50), (325, 350), VENTANA, fuente=("comic sans", 30), texto="Media", color_borde="grey", color_fondo="grey"),
-        "Dificil":         crear_boton((150, 50), (500, 350), VENTANA, fuente=("comic sans", 30), texto="Difícil", color_borde="grey", color_fondo="grey"),
+        "menos_preguntas": crear_boton((60, 60), (490, 110), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
+        "mas_preguntas":   crear_boton((60, 60), (550, 110), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
+        "menos_tiempo":    crear_boton((60, 60), (490, 190), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
+        "mas_tiempo":      crear_boton((60, 60), (550, 190), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
+        "menos_vidas":     crear_boton((60, 60), (490, 270), VENTANA, imagen=r"imagenes_sonidospygame\-.webp"),
+        "mas_vidas":       crear_boton((60, 60), (550, 270), VENTANA, imagen=r"imagenes_sonidospygame\+.webp"),
+        "guardar":         crear_boton((180, 60), (580, 500), VENTANA,fuente=("comic sans", 35), texto="Guardar",color_borde="grey", color_fondo="grey"),
+        "salir":           crear_boton((180, 60), (20, 500), VENTANA, fuente=("comic sans", 35), texto="Salir", color_borde="grey", color_fondo="grey"),
+        "Facil":           crear_boton((150, 50), (150, 380), VENTANA, fuente=("comic sans", 30), texto="Fácil", color_borde="grey", color_fondo="grey"),
+        "Media":           crear_boton((150, 50), (325, 380), VENTANA, fuente=("comic sans", 30), texto="Media", color_borde="grey", color_fondo="grey"),
+        "Dificil":         crear_boton((150, 50), (500, 380), VENTANA, fuente=("comic sans", 30), texto="Difícil", color_borde="grey", color_fondo="grey"),
     }
     return botones_config
 
 
 def botones_opciones(VENTANA,pregunta):
     botones_opciones = {
-        "A": crear_boton((700, 60), (50, 180), VENTANA,fuente=("comic sans", 35),texto=pregunta["opciones"]["A"],color_borde="grey", color_fondo="grey"),
-        "B": crear_boton((700, 60), (50, 270), VENTANA,fuente=("comic sans", 35),texto=pregunta["opciones"]["B"],color_borde="grey", color_fondo="grey"),
-        "C": crear_boton((700, 60), (50, 360), VENTANA,fuente=("comic sans", 35),texto=pregunta["opciones"]["C"],color_borde="grey", color_fondo="grey"),
+        "A": crear_boton((520, 60), (140, 260), VENTANA,fuente=("comic sans", 35),texto="A: " + pregunta["opciones"]["A"],color_borde="grey", color_fondo="grey"),
+        "B": crear_boton((520, 60), (140, 340), VENTANA,fuente=("comic sans", 35),texto="B: " + pregunta["opciones"]["B"],color_borde="grey", color_fondo="grey"),
+        "C": crear_boton((520, 60), (140, 420), VENTANA,fuente=("comic sans", 35),texto="C: " + pregunta["opciones"]["C"],color_borde="grey", color_fondo="grey"),
     }
     return botones_opciones

@@ -32,6 +32,22 @@ def graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero):
 def dibujar_x_o(VENTANA,ficha,coor,i, j):
     VENTANA.blit(ficha, coor[i][j])
 
+def obtener_celda(event):
+    mouse_x, mouse_y = event.pos
+
+    if not (90 <= mouse_x < 680 and 60 <= mouse_y < 540):
+        return None,None
+        
+    fila = (mouse_y - 60) // 170
+    columna = (mouse_x - 70) // 220
+
+    return fila,columna
+
+def mostrar_resultado(VENTANA, FONDO, equis, circulo, coor, tablero, FUENTE, mensaje):
+    graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero)
+    dibujar_texto(VENTANA,FUENTE,mensaje, x=340, y=10, color=Color.BLANCO.value)
+    pygame.display.update()
+    return esperar_salida_final()
 
 def mostrar_minijuego(VENTANA,FUENTE):
     FONDO_MINIJUEGO, circulo, equis, coor = parametros_minijuego()
@@ -47,26 +63,19 @@ def mostrar_minijuego(VENTANA,FUENTE):
                 return "salir"
             
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_x, mouse_y = event.pos
-                
-                if (mouse_x >= 70 and mouse_x < 730) and (mouse_y >= 60 and mouse_y < 570):
-                    fila = (mouse_y - 60) // 170
-                    columna = (mouse_x - 70) // 220
-                    
+                    fila,columna = obtener_celda(event)
+                    if fila is None:
+                        continue
+
                     if tablero[fila][columna] == " ":
                         tablero[fila][columna] = jugador
-                        victoria = verificar_victoria(len(tablero), tablero, jugador)
-                        if victoria == True:
-                            graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero)
-                            dibujar_texto(VENTANA,FUENTE,f"Ganó {jugador}", x=340, y=10, color=Color.BLANCO.value)
-                            pygame.display.update()
-                            return esperar_salida_final()
+                        
+                        if verificar_victoria(len(tablero), tablero, jugador):
+                            return mostrar_resultado(VENTANA, FONDO, equis, circulo, coor, tablero, FUENTE, f"Ganó {jugador}")
+                        
                         if verificar_empate(tablero):
-                            graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero)
-                            dibujar_texto(VENTANA,FUENTE,"¡Empate!", x=340, y=10, color=Color.BLANCO.value)
-                            pygame.display.update()
-                            return esperar_salida_final()
-                    
+                            return mostrar_resultado(VENTANA, FONDO, equis, circulo, coor, tablero, FUENTE,"¡Empate!")
+
                         jugador = cambiar_jugador(jugador)
 
         graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero)

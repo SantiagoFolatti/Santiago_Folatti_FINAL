@@ -41,7 +41,7 @@ Star Wars,Media,Quien construyo a C-3PO?,Yoda,Luke,Anakin,C,20
 Star Wars,Media,Quien es el lider de la Primera Orden?,Kylo Ren,Snoke,Palpatine,B,20
 Star Wars,Dificil,Cual es el verdadero nombre de Darth Vader?,Anakin Skywalker,Obi-Wan Kenobi,Mace Windu,A,30
 Star Wars,Dificil,Cual es el nombre verdadero de Rey?,Rey Kenobi,Rey Skywalker,Rey Palpatine,C,30
-Star Wars,Dificil,Como se llama el planeta destruido por la Estrella de la Muerte?,Endor,Alderaan,Bespin,B,30
+Star Wars,Dificil,Cual es el planeta destruido por la Estrella de la Muerte?,Endor,Alderaan,Bespin,B,30
 Star Wars,Dificil,Quien mato a Snoke?,Luke,Rey,Kylo Ren,C,30
 Star Wars,Dificil,Cual es el nombre del droide de BB-8?,D-O,K-2SO,R5,A,30
 El Señor de los Anillos,Facil,Quien es el portador original del Anillo Unico?,Bilbo,Sauron,Frodo,B,10
@@ -68,11 +68,11 @@ DC Comics,Media,¿Cuál es el verdadero nombre de Wonder Woman?,Diana Prince,Kar
 DC Comics,Media,¿Cuál es el nombre del mayordomo de Bruce Wayne?,Jarvis,Alfred,James,B,20
 DC Comics,Media,¿Qué miembro de la Liga de la Justicia es de Atlantis?,Aquaman,Flash,Green Lantern,A,20
 DC Comics,Media,¿Quién es el villano principal en 'The Dark Knight Rises'?,Joker,Bane,Riddler,B,20
-DC Comics,Media,¿Cuál es el nombre del escuadrón de villanos reclutado por el gobierno?,Justice League,Avengers,Suicide Squad,C,20
+DC Comics,Media,¿Cuál es el escuadrón de villanos reclutado por el gobierno?,Justice League,Avengers,Suicide Squad,C,20
 DC Comics,Dificil,¿Quién mató a los padres de Bruce Wayne?,Joker,Joe Chill,Harvey Dent,B,30
 DC Comics,Dificil,¿Cuál es el nombre kryptoniano de Superman?,Jor-El,Zod,Kal-El,C,30
 DC Comics,Dificil,¿Qué villano posee una mente brillante y es calvo?,Lex Luthor,Riddler,Penguin,A,30
-DC Comics,Dificil,¿Cómo se llama el evento que reinició el universo DC en los cómics?,Crisis Infinita,Flashpoint,Metal,B,30
+DC Comics,Dificil,¿Cuál es el evento que reinició el universo DC en los cómics?,Crisis Infinita,Flashpoint,Metal,B,30
 DC Comics,Dificil,¿Qué miembro de los Teen Titans es mitad robot?,Raven,Cyborg,Beast Boy,B,30
 Disney,Facil,¿Quién es la pareja de Mickey Mouse?,Daisy,Minnie,Clarabelle,B,10
 Disney,Facil,¿Cuál es el nombre del pez protagonista en 'Buscando a Nemo'?,Nemo,Dory,Marlin,A,10
