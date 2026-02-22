@@ -66,6 +66,25 @@ def dibujar_ganador(VENTANA,FUENTE,jugadores):
     else:
         dibujar_texto_centrado(VENTANA,FUENTE,f"EMPATE",190,Color.TEXTO.value)
 
+def dibujar_pantalla_final(VENTANA,FUENTE,jugadores):
+    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PUNTAJES.png")
+    FONDO = pygame.transform.scale(FONDO,(800,600))
+    VENTANA.blit(FONDO,(0,0))
+    
+    dibujar_ganador(VENTANA,FUENTE,jugadores)
+    
+    y = 235
+    for jugador in jugadores:
+        dibujar_texto_centrado(VENTANA,FUENTE,f"{jugador['nombre']} - Puntaje: {jugador['puntaje_total']}",y,Color.TEXTO.value)
+        y += 40
+    pygame.display.flip()
+
+
+def finalizar_juego(VENTANA,FUENTE,jugadores: list, limite_preguntas: int):
+    for jugador in jugadores:
+        calcular_estadisticas(jugador, limite_preguntas)
+        guardar_estadisticas("estadisticas.csv",jugador["nombre"], jugador)
+    dibujar_pantalla_final(VENTANA,FUENTE, jugadores)
 
 ######################################################
 def obtener_respuesta(VENTANA, FUENTE, CLICK_SONIDO,botones, pregunta,jugador, configuracion,tiempo_max):
@@ -118,28 +137,6 @@ def actualizar_estado_jugador(jugador:dict, pregunta:dict, resultado:dict,tiempo
     
     return jugador
 
-
-def dibujar_pantalla_final(VENTANA,FUENTE,jugadores):
-    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PUNTAJES.png")
-    FONDO = pygame.transform.scale(FONDO,(800,600))
-    VENTANA.blit(FONDO,(0,0))
-    
-    dibujar_ganador(VENTANA,FUENTE,jugadores)
-    
-    y = 235
-    for jugador in jugadores:
-        dibujar_texto_centrado(VENTANA,FUENTE,f"{jugador['nombre']} - Puntaje: {jugador['puntaje_total']}",y,Color.TEXTO.value)
-        y += 40
-    pygame.display.flip()
-
-
-def finalizar_juego(VENTANA,FUENTE,jugadores: list, limite_preguntas: int):
-    for jugador in jugadores:
-        calcular_estadisticas(jugador, limite_preguntas)
-        guardar_estadisticas("estadisticas.csv",jugador["nombre"], jugador)
-    dibujar_pantalla_final(VENTANA,FUENTE, jugadores)
-
-
 def jugar_turno_pygame(VENTANA, CLICK_SONIDO, FUENTE,jugador, pregunta,tiempo_max, configuracion):
     botones = botones_opciones(VENTANA, pregunta)
 
@@ -172,15 +169,15 @@ def juego_activo(jugadores,limite_preguntas):
     return activo
 
 
-def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: dict):
+def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: dict,nombre1,nombre2):
     limite_preguntas, tiempo_max, dificultad = obtener_parametros_juego(configuracion)
     preguntas_validas = seleccionar_preguntas_dificultad(preguntas,dificultad)
     preguntas_j1, preguntas_j2 = dividir_preguntas(preguntas_validas)
     
     jugadores = [inicializar_jugador(configuracion),inicializar_jugador(configuracion)]
 
-    jugadores[0]["nombre"] = "PEPE"
-    jugadores[1]["nombre"] = "JUAN"
+    jugadores[0]["nombre"] = nombre1
+    jugadores[1]["nombre"] = nombre2
 
     jugadores[0]["preguntas"] = preguntas_j1
     jugadores[1]["preguntas"] = preguntas_j2

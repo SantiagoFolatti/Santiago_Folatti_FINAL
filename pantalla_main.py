@@ -7,6 +7,8 @@ from datos import leer_preguntas_csv
 from configuracion import leer_configuracion
 from patalla_minijuego import mostrar_minijuego
 from botones import inicializar_ventana
+from pantalla_input import mostrar_input
+
 
 def main():
     VENTANA,FONDO,CLICK_SONIDO,FUENTE= inicializar_ventana()
@@ -20,9 +22,15 @@ def main():
             pantalla_actual = mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,r"config.json")
             
         elif pantalla_actual == "jugar":
-            pretuntas = leer_preguntas_csv(r"preguntas.csv")
-            configuracion = leer_configuracion(r"config.json")
-            pantalla_actual = jugar_pygame(VENTANA,CLICK_SONIDO,FUENTE,pretuntas, configuracion)
+            accion,nombre1,nombre2 = mostrar_input(VENTANA,FUENTE,FONDO)
+            if accion == "menu":
+                pantalla_actual = "menu"
+            elif accion == "salir":
+                pantalla_actual = "salir"
+            elif accion == "jugar":
+                pretuntas = leer_preguntas_csv(r"preguntas.csv")
+                configuracion = leer_configuracion(r"config.json")
+                pantalla_actual = jugar_pygame(VENTANA,CLICK_SONIDO,FUENTE,pretuntas, configuracion,nombre1,nombre2)
             
         elif pantalla_actual == "minijuego":
             pantalla_actual = mostrar_minijuego(VENTANA,FUENTE)

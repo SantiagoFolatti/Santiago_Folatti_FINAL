@@ -38,7 +38,9 @@ def dibujar_configuracion(VENTANA,FUENTE,config, botones):
     resaltar_dificultad(botones,config)
     dibujar_lista_botones(botones.values())
     pygame.display.update()
-    
+
+###################################################################################
+
 def accion_sumar(clave_config, config):
     config[clave_config] += 1
 
@@ -76,6 +78,7 @@ def diccionario_acciones(config,path_config):
 
     }
 
+###################################################################################
 
 def mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,path_config):
     botones = botones_configuracion(VENTANA)  

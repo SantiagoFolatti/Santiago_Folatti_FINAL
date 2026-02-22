@@ -113,10 +113,10 @@ def repintar_boton(boton):
 
 def botones_menu(VENTANA):
     botones_menu ={
-    "boton_jugar" : crear_boton(VENTANA,(300, 80),(250, 100),"grey","grey",("comic sans", 40),"Jugar","white"),
-    "boton_minijuego" : crear_boton(VENTANA,(300, 80),(250, 200),"grey","grey",("comic sans", 40),"Minijuego","white"),
+    "boton_jugar" :         crear_boton(VENTANA,(300, 80),(250, 100),"grey","grey",("comic sans", 40),"Jugar","white"),
+    "boton_minijuego" :     crear_boton(VENTANA,(300, 80),(250, 200),"grey","grey",("comic sans", 40),"Minijuego","white"),
     "boton_configuracion" : crear_boton(VENTANA,(300, 80),(250, 300),"grey","grey",("comic sans", 40),"Configuracion","white"),
-    "boton_puntajes" : crear_boton(VENTANA,(300, 80),(250, 400),"grey","grey",("comic sans", 40),"Puntajes","white")
+    "boton_puntajes" :      crear_boton(VENTANA,(300, 80),(250, 400),"grey","grey",("comic sans", 40),"Puntajes","white")
     }
     return botones_menu
 
@@ -144,3 +144,10 @@ def botones_opciones(VENTANA,pregunta):
         "C": crear_boton(VENTANA,(520, 60), (140, 420),"white","white",("comic sans", 35),"C: " + pregunta["opciones"]["C"],Color.AZUL_OSCURO.value),
     }
     return botones_opciones
+
+def botones_input(VENTANA):
+    botones_input = {
+        "jugar" :  crear_boton(VENTANA,(180, 60), (600, 500),"grey","grey",("comic sans", 35),"Jugar","white"),
+        "volver":   crear_boton(VENTANA,(180, 60), (20, 500),"grey","grey",("comic sans", 35),"Volver","white")
+    }
+    return botones_input
