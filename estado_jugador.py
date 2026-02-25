@@ -3,7 +3,6 @@ def inicializar_jugador(configuracion:dict) -> dict:
         "nombre" : "",
         "puntaje_total": 0,
         "respondidas": 0,
-        "indice" : 0,
         "respuestas_correctas" : 0,
         "porcentaje_aciertos": 0.0,
         "promedio_puntos": 0.0,

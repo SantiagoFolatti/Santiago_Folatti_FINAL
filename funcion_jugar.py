@@ -72,12 +72,12 @@ def jugar(preguntas: list, configuracion: dict, dificultad: str) -> dict:
 
 ###############################################################################################################################################
 
-def dividir_preguntas(preguntas: list) -> tuple:
+def dividir_preguntas(preguntas: list) -> list:
     random.shuffle(preguntas)
     mitad = len(preguntas) // 2
     preguntas_jugador_1 = preguntas[:mitad]
     preguntas_jugador_2 = preguntas[mitad:]
-    return preguntas_jugador_1, preguntas_jugador_2
+    return [preguntas_jugador_1, preguntas_jugador_2]
 
 
 def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, dificultad: str) -> dict:

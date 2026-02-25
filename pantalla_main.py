@@ -17,12 +17,12 @@ def main():
     while True:
         if pantalla_actual == "menu":
             pantalla_actual = mostrar_menu(VENTANA,CLICK_SONIDO,FONDO)
-            
+        
         elif pantalla_actual == "config":
             pantalla_actual = mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,r"config.json")
             
         elif pantalla_actual == "jugar":
-            accion,nombre1,nombre2 = mostrar_input(VENTANA,FUENTE,FONDO)
+            accion,nombres = mostrar_input(VENTANA,FUENTE,FONDO)
             if accion == "menu":
                 pantalla_actual = "menu"
             elif accion == "salir":
@@ -30,7 +30,7 @@ def main():
             elif accion == "jugar":
                 pretuntas = leer_preguntas_csv(r"preguntas.csv")
                 configuracion = leer_configuracion(r"config.json")
-                pantalla_actual = jugar_pygame(VENTANA,CLICK_SONIDO,FUENTE,pretuntas, configuracion,nombre1,nombre2)
+                pantalla_actual = jugar_pygame(VENTANA,CLICK_SONIDO,FUENTE,pretuntas, configuracion,nombres)
             
         elif pantalla_actual == "minijuego":
             pantalla_actual = mostrar_minijuego(VENTANA,FUENTE)

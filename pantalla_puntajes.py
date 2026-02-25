@@ -63,6 +63,6 @@ def mostrar_puntajes(VENTANA,FUENTE,path):
             if evento.type == pygame.QUIT:
                 return "salir"
 
-            if evento.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN):
+            if evento.type == pygame.MOUSEBUTTONDOWN:
                 return "menu"
 

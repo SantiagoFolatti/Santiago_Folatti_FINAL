@@ -41,8 +41,9 @@ def dibujar_configuracion(VENTANA,FUENTE,config, botones):
 
 ###################################################################################
 
-def accion_sumar(clave_config, config):
-    config[clave_config] += 1
+def accion_sumar(clave_config, config,maximo):
+    if config[clave_config] < maximo:
+        config[clave_config] += 1
 
 def accion_restar(clave_config, config, minimo):
     if config[clave_config] > minimo:
@@ -61,13 +62,13 @@ def accion_salir():
 def diccionario_acciones(config,path_config):
     return {
         "menos_preguntas" : (accion_restar,["cantidad_preguntas", config, 1]),
-        "mas_preguntas" : (accion_sumar, ["cantidad_preguntas", config]),
+        "mas_preguntas" : (accion_sumar, ["cantidad_preguntas", config,12]),
         
         "menos_tiempo" : (accion_restar, ["tiempo_por_pregunta", config, 1]),
-        "mas_tiempo" : (accion_sumar, ["tiempo_por_pregunta", config]),
+        "mas_tiempo" : (accion_sumar, ["tiempo_por_pregunta", config,30]),
         
         "menos_vidas" : (accion_restar, ["vidas", config, 1]),
-        "mas_vidas" : (accion_sumar, ["vidas", config]),
+        "mas_vidas" : (accion_sumar, ["vidas", config,6]),
         
         "Facil" : (accion_dificultad, [config, "Facil"]),
         "Media" : (accion_dificultad, [config, "Media"]),
@@ -94,12 +95,11 @@ def mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,path_config):
             
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 boton = detectar_click(botones, evento, CLICK_SONIDO)
-                if boton:
-                    for nombre, boton_dict in botones.items():
-                        if boton is boton_dict:
-                            funcion, args = acciones[nombre]
-                            resultado = funcion(*args)
+                for clave, valor in botones.items():
+                    if boton is valor:
+                        funcion, args = acciones[clave] # value de diccionario_acciones(funcion + parametros)
+                        resultado = funcion(*args) # El * desempaqueta la lista en diccionario de acciones y pasa los valores como parametros 
 
-                            if resultado  == "guardar" or resultado == "salir":
-                                return "menu"
+                        if resultado  == "guardar" or resultado == "salir":
+                            return "menu"
 

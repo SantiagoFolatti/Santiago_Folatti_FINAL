@@ -33,8 +33,8 @@ def dibujar_input(input):
     x = input["Rectangulo"].x
     y = input["Rectangulo"].y
     input["Ventana"].blit(texto, (x+5, y+7))
-    pygame.draw.rect(input["Ventana"], input["ColorActual"], input["Rectangulo"], 1)
     input["Rectangulo"].w = max(100,texto.get_width() + 10)
+    pygame.draw.rect(input["Ventana"], input["ColorActual"], input["Rectangulo"], 3)
 
 def definir_color_activo(inputs):
     for input in inputs:
@@ -76,7 +76,7 @@ def mostrar_input(VENTANA,FUENTE,FONDO):
                 
                 if botones["jugar"]["Rectangulo"].collidepoint(evento.pos):
                     if input1["Texto"].strip() != "" and input2["Texto"].strip() != "":
-                        return "jugar",input1["Texto"],input2["Texto"]
+                        return "jugar",[input1["Texto"],input2["Texto"]]
                 
             if evento.type == pygame.KEYDOWN:
                 for input in inputs:

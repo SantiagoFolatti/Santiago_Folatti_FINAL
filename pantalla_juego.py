@@ -60,9 +60,9 @@ def dibujar_juego(VENTANA,FUENTE,pregunta: dict, botones: dict,configuracion,jug
 
 def dibujar_ganador(VENTANA,FUENTE,jugadores):
     if jugadores[0]["puntaje_total"] > jugadores[1]["puntaje_total"]:
-        dibujar_texto_centrado(VENTANA,FUENTE,f"{jugadores[0]['nombre']} - GANADOR",190,Color.TEXTO.value)
+        dibujar_texto_centrado(VENTANA,FUENTE,f"¡GANADOR! - {jugadores[0]['nombre']}",190,Color.TEXTO.value)
     elif jugadores[1]["puntaje_total"] > jugadores[0]["puntaje_total"]:
-        dibujar_texto_centrado(VENTANA,FUENTE,f"{jugadores[1]['nombre']} - GANADOR",190,Color.TEXTO.value)
+        dibujar_texto_centrado(VENTANA,FUENTE,f"¡GANADOR! - {jugadores[1]['nombre']}",190,Color.TEXTO.value)
     else:
         dibujar_texto_centrado(VENTANA,FUENTE,f"EMPATE",190,Color.TEXTO.value)
 
@@ -105,8 +105,8 @@ def obtener_respuesta(VENTANA, FUENTE, CLICK_SONIDO,botones, pregunta,jugador, c
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 boton = detectar_click(botones, evento, CLICK_SONIDO)
                 if boton:
-                    for clave, b in botones.items():
-                        if b is boton:
+                    for clave, boton_dict in botones.items():
+                        if boton is boton_dict:
                             return clave, tiempo_usado
         
         dibujar_juego(VENTANA, FUENTE,pregunta, botones,configuracion, jugador,tiempo_restante)
@@ -117,12 +117,12 @@ def esperar_salida_final():
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return "salir"
-            if evento.type in (pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN):
+            if evento.type == pygame.MOUSEBUTTONDOWN:
                 return "menu"
 
 ######################################################
 
-def obtener_parametros_juego(configuracion: dict) -> tuple:
+def obtener_parametros_juego(configuracion: dict):
     limite_preguntas = configuracion["cantidad_preguntas"]
     tiempo_max = configuracion["tiempo_por_pregunta"]
     dificultad = configuracion["dificultad"]
@@ -148,16 +148,14 @@ def jugar_turno_pygame(VENTANA, CLICK_SONIDO, FUENTE,jugador, pregunta,tiempo_ma
     resultado = evaluar_respuesta(pregunta, respuesta, tiempo_usado, tiempo_max)
 
     dibujar_juego(VENTANA, FUENTE,pregunta, botones,configuracion, jugador,tiempo_restante=0,seleccion=respuesta)
-
     pygame.time.wait(1200)
 
     actualizar_estado_jugador(jugador, pregunta, resultado, tiempo_usado)
 
-    return "continuar"
 
 
 def puede_jugar(jugador,limite_preguntas):
-    puede = jugador["vidas"] > 0 and jugador["indice"] < limite_preguntas and jugador["indice"] < len(jugador["preguntas"])
+    puede = jugador["vidas"] > 0 and jugador["respondidas"] < limite_preguntas and jugador["respondidas"] < len(jugador["preguntas"])
     return puede
 
 
@@ -169,18 +167,18 @@ def juego_activo(jugadores,limite_preguntas):
     return activo
 
 
-def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: dict,nombre1,nombre2):
+def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: dict,nombres):
     limite_preguntas, tiempo_max, dificultad = obtener_parametros_juego(configuracion)
     preguntas_validas = seleccionar_preguntas_dificultad(preguntas,dificultad)
-    preguntas_j1, preguntas_j2 = dividir_preguntas(preguntas_validas)
+    preguntas_divididas = dividir_preguntas(preguntas_validas)
     
     jugadores = [inicializar_jugador(configuracion),inicializar_jugador(configuracion)]
 
-    jugadores[0]["nombre"] = nombre1
-    jugadores[1]["nombre"] = nombre2
+    for i in range(len(jugadores)):
+        jugadores[i]["preguntas"] = preguntas_divididas[i]
 
-    jugadores[0]["preguntas"] = preguntas_j1
-    jugadores[1]["preguntas"] = preguntas_j2
+    for i in range(len(jugadores)):
+        jugadores[i]["nombre"] = nombres[i]
 
     turno = 0
 
@@ -192,14 +190,13 @@ def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: 
             turno = (turno + 1) % 2
             continue
 
-        pregunta = jugador["preguntas"][jugador["indice"]]
+        pregunta = jugador["preguntas"][jugador["respondidas"]]
 
         estado_turno = jugar_turno_pygame(VENTANA,CLICK_SONIDO,FUENTE,jugador,pregunta,tiempo_max,configuracion)
 
         if estado_turno == "salir":
             return "salir"
 
-        jugador["indice"] += 1
         turno = (turno + 1) % 2
 
     finalizar_juego(VENTANA, FUENTE, jugadores, limite_preguntas)
