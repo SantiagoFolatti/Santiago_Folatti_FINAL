@@ -65,14 +65,14 @@ def mostrar_input(VENTANA,FUENTE,FONDO):
         dibujar_pantalla_input(VENTANA,FONDO,FUENTE,inputs,botones)
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return "salir",None,None
+                return "salir",[None,None]
 
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 for input in inputs:
                     input["Activo"] = input["Rectangulo"].collidepoint(evento.pos)
 
                 if botones["volver"]["Rectangulo"].collidepoint(evento.pos):
-                    return "menu",None,None
+                    return "menu",[None,None]
                 
                 if botones["jugar"]["Rectangulo"].collidepoint(evento.pos):
                     if input1["Texto"].strip() != "" and input2["Texto"].strip() != "":
