@@ -20,5 +20,5 @@ def leer_preguntas_csv(path:str) -> list:
                 pregunta["puntos"] = int(lectura[7])
                 lista.append(pregunta)
     except FileNotFoundError:
-        print(f"❌ No se encontró el archivo de preguntas en: {path}")
+        print(f"No se encontró el archivo de preguntas en: {path}")
     return lista

@@ -34,10 +34,10 @@ def main():
             ordenar_estadisticas_por_puntaje(estadisticas)
             mostrar_estadisticas(estadisticas,"📊 --- Ranking de Jugadores --- 📊")
         elif opcion == "6":
-            mostrar_un_mensaje("👋 ¡Gracias por jugar! Hasta la próxima.")
+            mostrar_un_mensaje("¡Gracias por jugar! Hasta la próxima.")
             break
         else:
-            mostrar_un_mensaje("❌ Opción inválida. Por favor, elija una opción del 1 al 5.")
+            mostrar_un_mensaje("Opción inválida. Por favor, elija una opción del 1 al 5.")
 
 if __name__ == "__main__":
     main()

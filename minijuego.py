@@ -30,7 +30,7 @@ def pedir_entero(texto: str) -> int:
     return numero
 
 def pedir_posicion(tablero, jugador, nombre):
-    mostrar_un_mensaje(f"\n🎮 Turno de {nombre} ({jugador})")
+    mostrar_un_mensaje(f"\nTurno de {nombre} ({jugador})")
     fila = pedir_entero("Fila (0-2): ")
     columna = pedir_entero("Columna (0-2): ")
 
@@ -38,10 +38,10 @@ def pedir_posicion(tablero, jugador, nombre):
     casilla_ocupada = not fuera_de_rango and tablero[fila][columna] != " "
 
     if fuera_de_rango:
-        mostrar_un_mensaje("❌ Fuera del tablero.")
+        mostrar_un_mensaje("Fuera del tablero.")
         posicion = pedir_posicion(tablero, jugador, nombre)
     elif casilla_ocupada:
-        mostrar_un_mensaje("❌ Casilla ocupada.")
+        mostrar_un_mensaje("Casilla ocupada.")
         posicion = pedir_posicion(tablero, jugador, nombre)
     else:
         posicion = fila, columna
@@ -77,9 +77,9 @@ def mostrar_resultado(tablero, ganador, nombre_x, nombre_o):
     imprimir_tablero(tablero)
     if ganador is not None:
         nombre = nombre_x if ganador == "X" else nombre_o
-        mostrar_un_mensaje(f"\n🏆 ¡Ganó {nombre}! ({ganador})")
+        mostrar_un_mensaje(f"\n¡Ganó {nombre}! ({ganador})")
     else:
-        mostrar_un_mensaje("\n🤝 ¡Empate! ")
+        mostrar_un_mensaje("\n¡Empate! ")
 
 def asignar_nombre(jugador, nombre_x, nombre_o):
     if jugador == "X":
@@ -109,7 +109,7 @@ def juego():
 
     while turnos < 9 and ganador is None:
         imprimir_tablero(tablero)
-        mostrar_un_mensaje("📍 Movimientos disponibles:")
+        mostrar_un_mensaje(" Movimientos disponibles:")
         disponibles = ordenar_movimientos(movimientos_disponibles(tablero))
         mosrar_movimientos_disponibles(tablero, disponibles)
         

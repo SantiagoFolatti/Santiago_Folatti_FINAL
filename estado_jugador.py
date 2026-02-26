@@ -45,15 +45,15 @@ def actualizar_estado_incorrecto(jugador: dict) -> dict:
 
 def mostrar_mensaje_bonus(jugador: dict):
     if jugador["racha_correctas"] == 3:
-        print("\n🔥 Bonus activado: ¡Multiplicador x2 en la siguiente pregunta!")
+        print("\nBonus activado: ¡Multiplicador x2 en la siguiente pregunta!")
     elif jugador["multiplicador"] == 2:
-        print("\n🔥 ¡Mantienes el multiplicador x2!")
+        print("\n¡Mantienes el multiplicador x2!")
 
 def mostrar_mensaje_penalizacion(jugador: dict):
     if jugador["racha_incorrectas"] == 2:
-        print("\n⚠️ Penalización activada: la siguiente pregunta resta doble si fallas.")
+        print("\nPenalización activada: la siguiente pregunta resta doble si fallas.")
     elif jugador["multiplicador"] == -2:
-        print("\n⚠️ ¡Penalización aún activa!")
+        print("\n¡Penalización aún activa!")
 
 
 def aplicar_multiplicador(puntos: int, estado:str, multiplicador:int) -> int:

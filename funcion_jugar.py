@@ -38,13 +38,13 @@ def realizar_turno(jugador:dict, pregunta:dict, tiempo_max: int) -> dict:
     actualizar_puntajes(jugador, resultado_ronda["puntos_obtenidos"], resultado_ronda["respondida"])
     jugador["tiempo_total"] += resultado_ronda["tiempo_usado"]
 
-    pausar_y_limpiar("🔄 Presione ENTER para continuar...")
+    pausar_y_limpiar("Presione ENTER para continuar...")
     
     return jugador
 
 def verificar_vidas(jugador: dict):
     if jugador["vidas"] == 0:
-        mostrar_un_mensaje("💔 Has perdido todas tus vidas. Fin del juego.")
+        mostrar_un_mensaje("Has perdido todas tus vidas. Fin del juego.")
 
 
 def jugar(preguntas: list, configuracion: dict, dificultad: str) -> dict:
@@ -61,7 +61,7 @@ def jugar(preguntas: list, configuracion: dict, dificultad: str) -> dict:
         if pregunta:
             jugador = realizar_turno(jugador, pregunta, tiempo_max)
         else:
-            mostrar_un_mensaje(f"❌ No hay preguntas disponibles en la categoría {categoria_aleatoria}")
+            mostrar_un_mensaje(f"No hay preguntas disponibles en la categoría {categoria_aleatoria}")
 
         preguntas_restantes = nuevas_preguntas
     
@@ -81,7 +81,7 @@ def dividir_preguntas(preguntas: list) -> list:
 
 
 def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, dificultad: str) -> dict:
-    mostrar_un_mensaje(f"🕹️ Turno del jugador {nombre}")
+    mostrar_un_mensaje(f"Turno del jugador {nombre}")
     jugador = jugar(preguntas, configuracion, dificultad)
     guardar_estadisticas(r"estadisticas.csv", nombre, jugador)
     return jugador
@@ -97,7 +97,7 @@ def jugar_preguntas_y_respuestas():
     preguntas_jugador_1, preguntas_jugador_2 = dividir_preguntas(preguntas)
     
     jugador_1 = iniciar_juego_individual(nombre_jugador_1, preguntas_jugador_1, configuracion, dificultad)
-    pausar_y_limpiar("🔄 Presione ENTER para continuar con el segundo jugador...")
+    pausar_y_limpiar("Presione ENTER para continuar con el segundo jugador...")
     jugador_2 = iniciar_juego_individual(nombre_jugador_2, preguntas_jugador_2, configuracion, dificultad)
     
     mostrar_resultado_final(nombre_jugador_1, jugador_1, nombre_jugador_2, jugador_2)
