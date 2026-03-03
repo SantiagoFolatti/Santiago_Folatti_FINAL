@@ -62,16 +62,22 @@ def crear_boton(ventana,dimensiones,posicion,color_fondo=None,color_borde=None,f
 
     return boton
 
-def dibujar_boton(boton):
+
+def dibujar_boton(boton:dict) -> None:
     boton["Ventana"].blit(boton["Superficie"], boton["Posicion"])
 
-def dibujar_lista_botones(lista):
+
+def dibujar_lista_botones(botones:list) -> None:
     mouse_pos = pygame.mouse.get_pos()
-    for boton in lista:
+    for boton in botones:
         dibujar_boton(boton)
         actualizar_hover_boton(boton, mouse_pos)
 
-def detectar_click(botones, evento,click_sonido):
+
+########################################################################################################
+
+
+def detectar_click(botones:dict, evento,click_sonido) -> dict|None:
     resetear_botones(botones)
     for boton in botones.values():
         if boton["Rectangulo"].collidepoint(evento.pos):
@@ -81,11 +87,13 @@ def detectar_click(botones, evento,click_sonido):
         
     return None
 
-def resetear_botones(botones):
+
+def resetear_botones(botones:dict) -> None:
     for boton in botones.values():
         boton["Presionado"] = False
 
-def actualizar_hover_boton(boton, mouse_pos):
+
+def actualizar_hover_boton(boton:dict, mouse_pos) -> None:
     if boton["Rectangulo"].collidepoint(mouse_pos) and not boton["Esimagen"]:
         pygame.draw.rect(boton["Ventana"], "black", boton["Rectangulo"], 4)  
         boton["Hover"] = True
@@ -93,7 +101,8 @@ def actualizar_hover_boton(boton, mouse_pos):
         pygame.draw.rect(boton["Ventana"], boton["ColorBorde"], boton["Rectangulo"], 2)
         boton["Hover"] = False
 
-def repintar_boton(boton):
+
+def repintar_boton(boton:dict) -> None:
     superficie = pygame.Surface(boton["Dimensiones"])
     superficie.fill(boton["ColorFondo"])
 
@@ -105,13 +114,13 @@ def repintar_boton(boton):
 
     superficie.blit(texto_render, rect_texto)
 
-    # if boton["ColorBorde"]:
-    #     pygame.draw.rect(superficie, boton["ColorBorde"], superficie.get_rect(), 2)
-
     boton["Superficie"] = superficie
 
 
-def botones_menu(VENTANA):
+########################################################################################################
+
+
+def botones_menu(VENTANA) -> dict:
     botones_menu ={
     "boton_jugar" :         crear_boton(VENTANA,(300, 80),(250, 100),"grey","grey",("comic sans", 40),"Jugar","white"),
     "boton_minijuego" :     crear_boton(VENTANA,(300, 80),(250, 200),"grey","grey",("comic sans", 40),"Minijuego","white"),
@@ -120,7 +129,8 @@ def botones_menu(VENTANA):
     }
     return botones_menu
 
-def botones_configuracion(VENTANA):
+
+def botones_configuracion(VENTANA) -> dict:
     botones_config = {
         "menos_preguntas": crear_boton(VENTANA,(45, 45), (490, 125),imagen=r"imagenes_sonidospygame\-.png"),
         "mas_preguntas":   crear_boton(VENTANA,(45, 45), (550, 125),imagen=r"imagenes_sonidospygame\+.png"),
@@ -137,7 +147,7 @@ def botones_configuracion(VENTANA):
     return botones_config
 
 
-def botones_opciones(VENTANA,pregunta):
+def botones_opciones(VENTANA,pregunta:dict) -> dict:
     botones_opciones = {
         "A": crear_boton(VENTANA,(520, 60), (140, 260),"white","white",("comic sans", 35),"A: " + pregunta["opciones"]["A"],Color.AZUL_OSCURO.value),
         "B": crear_boton(VENTANA,(520, 60), (140, 340),"white","white",("comic sans", 35),"B: " + pregunta["opciones"]["B"],Color.AZUL_OSCURO.value),
@@ -145,7 +155,8 @@ def botones_opciones(VENTANA,pregunta):
     }
     return botones_opciones
 
-def botones_input(VENTANA):
+
+def botones_input(VENTANA) -> dict:
     botones_input = {
         "jugar" :  crear_boton(VENTANA,(180, 60), (600, 500),"grey","grey",("comic sans", 35),"Jugar","white"),
         "volver":   crear_boton(VENTANA,(180, 60), (20, 500),"grey","grey",("comic sans", 35),"Volver","white")

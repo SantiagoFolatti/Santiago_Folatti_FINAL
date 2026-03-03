@@ -1,4 +1,6 @@
 from enum import Enum
+
+
 class Color(Enum):
     CELESTE = (155, 199, 204)
     ROJO = (204, 157, 155)

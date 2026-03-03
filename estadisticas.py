@@ -1,6 +1,8 @@
 import re
 
-def guardar_estadisticas(path: str, nombre_jugador: str, jugador: dict):
+
+
+def guardar_estadisticas(path: str, nombre_jugador: str, jugador: dict) -> None:
     try:
         with open(path, "a", encoding="utf8") as archivo:
             linea = f"{nombre_jugador}," \
@@ -15,6 +17,7 @@ def guardar_estadisticas(path: str, nombre_jugador: str, jugador: dict):
             archivo.write(linea)
     except Exception as e:
         print(f"Eror al guardar estadisticas: {e}")
+
 
 def leer_estadisticas(path: str) -> list:
     try:
@@ -40,6 +43,7 @@ def leer_estadisticas(path: str) -> list:
         print(f"Error al leer estadísticas: {e}")
     return estadisticas
 
+
 def mostrar_estadisticas(estadisticas: list,mensaje:str) -> None:
     print(mensaje)
     print(f"{'Jugador':<15} {'Puntaje':>10} {'Resp.':>7} {'% Aciertos':>12} {'Prom.':>8} {'Vidas':>7} {'RachaMax':>10} {'TiempoTot':>10} {'TiempoProm':>12}")
@@ -56,10 +60,12 @@ def mostrar_estadisticas(estadisticas: list,mensaje:str) -> None:
             f"{e['tiempo_promedio']:>12.2f}")
     print("-" * 95)
 
-def swap(lista, i, j):
+
+def swap(lista:list, i:int, j:int) -> None:
     aux = lista[i]
     lista[i] = lista[j]
     lista[j] = aux
+
 
 def ordenar_estadisticas_por_puntaje(estadisticas: list) -> list:
     for i in range(len(estadisticas) - 1):

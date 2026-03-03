@@ -8,12 +8,14 @@ from rondas import evaluar_respuesta
 from estadisticas import guardar_estadisticas
 from funciones_categorias import seleccionar_preguntas_dificultad
 
-####################################################
-def dibujar_pregunta(VENTANA, FUENTE, pregunta):
+
+
+def dibujar_pregunta(VENTANA:pygame.surface, FUENTE:pygame.font, pregunta:dict) -> None:
     dibujar_texto_centrado(VENTANA,FUENTE,f"Categoría: {pregunta['categoria']} | Dificultad: {pregunta['dificultad']}",90,Color.TEXTO.value)
     dibujar_texto_centrado(VENTANA,FUENTE,pregunta["pregunta"],150,Color.TEXTO.value)
 
-def dibujar_botones_respuesta(botones: dict, pregunta: dict, seleccion=None):
+
+def dibujar_botones_respuesta(botones: dict, pregunta: dict, seleccion=None) -> None:
     for clave, boton in botones.items():
         if seleccion is not None:
             if clave == pregunta["respuesta_correcta"]:
@@ -25,7 +27,8 @@ def dibujar_botones_respuesta(botones: dict, pregunta: dict, seleccion=None):
         repintar_boton(boton)
     dibujar_lista_botones(botones.values())
 
-def dibujar_corazones(VENTANA, vidas_actuales, vidas_maximas):
+
+def dibujar_corazones(VENTANA:pygame.surface, vidas_actuales:int, vidas_maximas:int) -> None:
     corazon = pygame.image.load(r"imagenes_sonidospygame\corazon.png")
     corazon = pygame.transform.scale(corazon,(40,40))
     corazon_roto = pygame.image.load(r"imagenes_sonidospygame\corazonroto.webp")
@@ -38,7 +41,10 @@ def dibujar_corazones(VENTANA, vidas_actuales, vidas_maximas):
         else:
             VENTANA.blit(corazon_roto,(pos_x,10))
 
-def dibujar_tiempo(VENTANA,FUENTE,tiempo_restante,color):
+
+def dibujar_tiempo(VENTANA:pygame.surface, FUENTE:pygame.font, 
+                tiempo_restante:float, color:tuple[int,int,int]) -> None:
+    
     if tiempo_restante <= 0:
         tiempo_restante = 0
     
@@ -47,7 +53,10 @@ def dibujar_tiempo(VENTANA,FUENTE,tiempo_restante,color):
         
     dibujar_texto(VENTANA,FUENTE,f"{int(tiempo_restante)}s",10,10,color)
 
-def dibujar_juego(VENTANA,FUENTE,pregunta: dict, botones: dict,configuracion,jugador,tiempo_restante, seleccion=None):
+
+def dibujar_juego(VENTANA:pygame.surface, FUENTE:pygame.font,pregunta: dict, 
+    botones: dict,configuracion:dict,jugador:dict,tiempo_restante:float, seleccion=None) -> None:
+    
     FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PREGUNTAS.png")
     VENTANA.blit(FONDO,(0,0))
     
@@ -58,7 +67,8 @@ def dibujar_juego(VENTANA,FUENTE,pregunta: dict, botones: dict,configuracion,jug
     dibujar_texto_centrado(VENTANA,FUENTE,f"Turno {jugador["nombre"]}",15,Color.TEXTO.value)
     pygame.display.flip()
 
-def dibujar_ganador(VENTANA,FUENTE,jugadores):
+
+def dibujar_ganador(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores:dict) -> None:
     if jugadores[0]["puntaje_total"] > jugadores[1]["puntaje_total"]:
         dibujar_texto_centrado(VENTANA,FUENTE,f"¡GANADOR! - {jugadores[0]['nombre']}",190,Color.TEXTO.value)
     elif jugadores[1]["puntaje_total"] > jugadores[0]["puntaje_total"]:
@@ -66,7 +76,8 @@ def dibujar_ganador(VENTANA,FUENTE,jugadores):
     else:
         dibujar_texto_centrado(VENTANA,FUENTE,f"EMPATE",190,Color.TEXTO.value)
 
-def dibujar_pantalla_final(VENTANA,FUENTE,jugadores):
+
+def dibujar_pantalla_final(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores:dict) -> None:
     FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PUNTAJES.png")
     FONDO = pygame.transform.scale(FONDO,(800,600))
     VENTANA.blit(FONDO,(0,0))
@@ -80,14 +91,21 @@ def dibujar_pantalla_final(VENTANA,FUENTE,jugadores):
     pygame.display.flip()
 
 
-def finalizar_juego(VENTANA,FUENTE,jugadores: list, limite_preguntas: int):
+def finalizar_juego(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores: list, limite_preguntas: int) -> None:
     for jugador in jugadores:
         calcular_estadisticas(jugador, limite_preguntas)
         guardar_estadisticas("estadisticas.csv",jugador["nombre"], jugador)
     dibujar_pantalla_final(VENTANA,FUENTE, jugadores)
 
+
 ######################################################
-def obtener_respuesta(VENTANA, FUENTE, CLICK_SONIDO,botones, pregunta,jugador, configuracion,tiempo_max):
+
+def obtener_respuesta(
+    VENTANA:pygame.surface, FUENTE:pygame.font, CLICK_SONIDO:pygame.mixer.Sound, 
+    botones:dict, pregunta:dict,jugador:dict, configuracion:dict,tiempo_max:int
+    ) -> tuple[str | None, float]:
+    
+    
     inicio = pygame.time.get_ticks()
     reloj = pygame.time.Clock()
 
@@ -112,7 +130,8 @@ def obtener_respuesta(VENTANA, FUENTE, CLICK_SONIDO,botones, pregunta,jugador, c
         dibujar_juego(VENTANA, FUENTE,pregunta, botones,configuracion, jugador,tiempo_restante)
         reloj.tick(60)
 
-def esperar_salida_final():
+
+def esperar_salida_final() -> str:
     while True:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -120,13 +139,16 @@ def esperar_salida_final():
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 return "menu"
 
+
 ######################################################
 
-def obtener_parametros_juego(configuracion: dict):
+
+def obtener_parametros_juego(configuracion: dict) -> tuple[int,int,str]:
     limite_preguntas = configuracion["cantidad_preguntas"]
     tiempo_max = configuracion["tiempo_por_pregunta"]
     dificultad = configuracion["dificultad"]
     return limite_preguntas, tiempo_max, dificultad
+
 
 def actualizar_estado_jugador(jugador:dict, pregunta:dict, resultado:dict,tiempo_usado:float) -> dict:
     estado = resultado["estado"]
@@ -137,7 +159,12 @@ def actualizar_estado_jugador(jugador:dict, pregunta:dict, resultado:dict,tiempo
     
     return jugador
 
-def jugar_turno_pygame(VENTANA, CLICK_SONIDO, FUENTE,jugador, pregunta,tiempo_max, configuracion):
+
+def jugar_turno_pygame(
+    VENTANA:pygame.surface, CLICK_SONIDO:pygame.mixer.Sound, FUENTE:pygame.font, 
+    jugador:dict, pregunta:dict, tiempo_max:int, configuracion:dict
+    ) -> str:
+    
     botones = botones_opciones(VENTANA, pregunta)
 
     respuesta, tiempo_usado = obtener_respuesta(VENTANA, FUENTE, CLICK_SONIDO,botones, pregunta,jugador, configuracion,tiempo_max)
@@ -153,13 +180,12 @@ def jugar_turno_pygame(VENTANA, CLICK_SONIDO, FUENTE,jugador, pregunta,tiempo_ma
     actualizar_estado_jugador(jugador, pregunta, resultado, tiempo_usado)
 
 
-
-def puede_jugar(jugador,limite_preguntas):
+def puede_jugar(jugador:dict, limite_preguntas:int) -> bool:
     puede = jugador["vidas"] > 0 and jugador["respondidas"] < limite_preguntas and jugador["respondidas"] < len(jugador["preguntas"])
     return puede
 
 
-def juego_activo(jugadores,limite_preguntas):
+def juego_activo(jugadores:list, limite_preguntas:int) -> bool:
     activo = False
     for jugador in jugadores:
         if puede_jugar(jugador,limite_preguntas):
@@ -167,7 +193,12 @@ def juego_activo(jugadores,limite_preguntas):
     return activo
 
 
-def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: dict,nombres):
+def jugar_pygame(
+    VENTANA:pygame.surface, CLICK_SONIDO:pygame.mixer.Sound, FUENTE:pygame.font,
+    preguntas: list, configuracion: dict, nombres:list
+    ) -> str:
+    
+    
     limite_preguntas, tiempo_max, dificultad = obtener_parametros_juego(configuracion)
     preguntas_validas = seleccionar_preguntas_dificultad(preguntas,dificultad)
     preguntas_divididas = dividir_preguntas(preguntas_validas)
@@ -201,4 +232,3 @@ def jugar_pygame(VENTANA, CLICK_SONIDO, FUENTE, preguntas: list, configuracion: 
 
     finalizar_juego(VENTANA, FUENTE, jugadores, limite_preguntas)
     return esperar_salida_final()
-

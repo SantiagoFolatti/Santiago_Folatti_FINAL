@@ -4,16 +4,19 @@ from botones import botones_configuracion,repintar_boton,dibujar_lista_botones, 
 from colores_enum import Color
 
 
-def dibujar_texto(VENTANA,FUENTE,texto, x, y, color=Color.NEGRO.value):
+
+def dibujar_texto(VENTANA:pygame.surface, FUENTE:pygame.font, texto:str, x:int, y:int, color: tuple[int, int, int]) -> None:
     render = FUENTE.render(texto, True, color)
     VENTANA.blit(render, (x, y))
 
-def dibujar_texto_centrado(VENTANA, FUENTE, texto, y, color):
+
+def dibujar_texto_centrado(VENTANA:pygame.surface, FUENTE:pygame.font, texto:str, y:int, color: tuple[int, int, int]) -> None:
     render = FUENTE.render(texto, True, color)
     x = (VENTANA.get_width() - render.get_width()) // 2
     VENTANA.blit(render, (x, y))
 
-def resaltar_dificultad(botones,config):
+
+def resaltar_dificultad(botones:dict, config:dict) -> None:
     for clave in ["Facil", "Media", "Dificil"]:
         if config["dificultad"] == clave:
             botones[clave]["ColorFondo"] = Color.GRIS_OSCURO.value
@@ -25,7 +28,7 @@ def resaltar_dificultad(botones,config):
         repintar_boton(botones[clave])
 
 
-def dibujar_configuracion(VENTANA,FUENTE,config, botones):
+def dibujar_configuracion(VENTANA:pygame.surface, FUENTE:pygame.font.Font, config:dict, botones:dict) -> None:
     FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO CONFIGURACION.png")
     FONDO = pygame.transform.scale(FONDO,(800,600))
     VENTANA.blit(FONDO,(0,0))
@@ -39,27 +42,29 @@ def dibujar_configuracion(VENTANA,FUENTE,config, botones):
     dibujar_lista_botones(botones.values())
     pygame.display.update()
 
+
 ###################################################################################
 
-def accion_sumar(clave_config, config,maximo):
+
+def accion_sumar(clave_config:str, config:dict, maximo:int) -> None:
     if config[clave_config] < maximo:
         config[clave_config] += 1
 
-def accion_restar(clave_config, config, minimo):
+def accion_restar(clave_config:str, config:dict, minimo:int) -> None:
     if config[clave_config] > minimo:
         config[clave_config] -= 1
 
-def accion_dificultad(config, valor_dificultad):
+def accion_dificultad(config:dict, valor_dificultad:str) -> None:
     config["dificultad"] = valor_dificultad
 
-def accion_guardar(path_config, config):
+def accion_guardar(path_config:str, config:dict)-> str:
     guardar_configuracion(path_config, config)
     return "guardar"
 
-def accion_salir():
+def accion_salir() -> None:
     return "salir"
 
-def diccionario_acciones(config,path_config):
+def diccionario_acciones(config:dict, path_config:str) -> dict:
     return {
         "menos_preguntas" : (accion_restar,["cantidad_preguntas", config, 1]),
         "mas_preguntas" : (accion_sumar, ["cantidad_preguntas", config,12]),
@@ -76,12 +81,13 @@ def diccionario_acciones(config,path_config):
         
         "guardar" : (accion_guardar, [path_config, config]),
         "salir" : (accion_salir, [])
-
     }
+
 
 ###################################################################################
 
-def mostrar_configuracion(VENTANA,CLICK_SONIDO,FUENTE,path_config):
+
+def mostrar_configuracion(VENTANA:pygame.surface, CLICK_SONIDO:pygame.mixer.Sound, FUENTE:pygame.font.Font, path_config:str) -> str:
     botones = botones_configuracion(VENTANA)  
     config = leer_configuracion(path_config)
     acciones = diccionario_acciones(config, path_config)

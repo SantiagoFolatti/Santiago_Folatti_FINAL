@@ -16,6 +16,7 @@ def inicializar_jugador(configuracion:dict) -> dict:
     }
     return jugador
 
+
 def actualizar_estado_correcto(jugador: dict) -> dict:
     jugador["respuestas_correctas"] += 1
     jugador["racha_correctas"] += 1
@@ -31,6 +32,7 @@ def actualizar_estado_correcto(jugador: dict) -> dict:
         jugador["racha_maxima_correctas"] = jugador["racha_correctas"]
     return jugador
 
+
 def actualizar_estado_incorrecto(jugador: dict) -> dict:
     jugador["vidas"] -= 1
     jugador["racha_correctas"] = 0 
@@ -43,13 +45,14 @@ def actualizar_estado_incorrecto(jugador: dict) -> dict:
     return jugador
 
 
-def mostrar_mensaje_bonus(jugador: dict):
+def mostrar_mensaje_bonus(jugador: dict) -> None:
     if jugador["racha_correctas"] == 3:
         print("\nBonus activado: ¡Multiplicador x2 en la siguiente pregunta!")
     elif jugador["multiplicador"] == 2:
         print("\n¡Mantienes el multiplicador x2!")
 
-def mostrar_mensaje_penalizacion(jugador: dict):
+
+def mostrar_mensaje_penalizacion(jugador: dict) -> None:
     if jugador["racha_incorrectas"] == 2:
         print("\nPenalización activada: la siguiente pregunta resta doble si fallas.")
     elif jugador["multiplicador"] == -2:
@@ -64,6 +67,7 @@ def aplicar_multiplicador(puntos: int, estado:str, multiplicador:int) -> int:
         puntos_finales = multiplicar_incorrecto(puntos,estado,multiplicador)
     return puntos_finales
 
+
 def multiplicar_correcto(puntos: int, estado:str, multiplicador:int) -> int:
     puntos_finales = 0
     if estado == "correcto":
@@ -73,12 +77,14 @@ def multiplicar_correcto(puntos: int, estado:str, multiplicador:int) -> int:
             puntos_finales = puntos
     return puntos_finales
 
+
 def multiplicar_incorrecto(puntos: int, estado:str, multiplicador:int) -> int:
     puntos_finales = 0
     if estado == "incorrecto" or estado == "tiempo_agotado":
         if multiplicador < 0:
             puntos_finales = puntos * multiplicador
     return puntos_finales
+
 
 def procesar_estado_mensaje(jugador: dict, estado: str) -> dict:
     if estado == "correcto":

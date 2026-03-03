@@ -4,12 +4,14 @@ from colores_enum import Color
 from pantalla_configuracion import dibujar_texto,dibujar_texto_centrado
 
 
-def dibujar_encabezados(VENTANA,FUENTE,):
+
+def dibujar_encabezados(VENTANA:pygame.surface, FUENTE:pygame.font) -> None:
     encabezados = ["Jugador", "Puntaje", "Correctas", "Vidas"]
     x = [120, 320, 480, 640]
     
     for i in range(len(encabezados)):
         dibujar_texto(VENTANA,FUENTE,encabezados[i],x[i],100,Color.TEXTO.value)
+
 
 def dibujar_nombre_podio(VENTANA,FUENTE,datos,x,y,puesto):
     colores_podio = [Color.DORADO.value, Color.PLATA.value, Color.BRONCE.value]

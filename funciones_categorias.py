@@ -4,6 +4,7 @@ def listar_categoria(preguntas: list) -> list:
         categorias.add(pregunta["categoria"])
     return list(categorias)
 
+
 def seleccionar_pregunta_por_categoria(preguntas_restantes: list, categoria_elegida: str, dificultad:str) -> dict:
     pregunta_seleccionada = None
     nuevas_preguntas = []
@@ -16,7 +17,8 @@ def seleccionar_pregunta_por_categoria(preguntas_restantes: list, categoria_eleg
             
     return pregunta_seleccionada, nuevas_preguntas
 
-def seleccionar_preguntas_dificultad(preguntas,dificultad):
+
+def seleccionar_preguntas_dificultad(preguntas:dict,dificultad:str) -> list:
     preguntas_dificultad = []
     
     for pregunta in preguntas:

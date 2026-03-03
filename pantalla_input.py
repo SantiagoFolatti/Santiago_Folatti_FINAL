@@ -3,6 +3,8 @@ from colores_enum import Color
 from pantalla_configuracion import dibujar_texto_centrado
 from botones import botones_input,dibujar_lista_botones
 
+
+
 def crear_input(VENTANA, FUENTE, color_activo, color_inactivo, posicion, dimension):
     input = {}
     input["Ventana"] = VENTANA

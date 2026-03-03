@@ -1,7 +1,9 @@
 import pygame
 from botones import botones_menu,detectar_click, dibujar_lista_botones
 
-def mostrar_menu(VENTANA,CLICK_SONIDO,FONDO):
+
+
+def mostrar_menu(VENTANA:pygame.surface, CLICK_SONIDO:pygame.mixer.Sound, FONDO: pygame.Surface):
     botones = botones_menu(VENTANA)
 
     while True:

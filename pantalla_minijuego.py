@@ -6,6 +6,7 @@ from colores_enum import Color
 from pantalla_juego import esperar_salida_final
 
 
+
 def parametros_minijuego():
     FONDO_MINIJUEGO = pygame.image.load(r"imagenes_sonidospygame\tictactoe_background.png")
 
@@ -20,7 +21,7 @@ def parametros_minijuego():
     
     return FONDO_MINIJUEGO, circulo, equis, coor
 
-def graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero):
+def graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero) -> None:
     VENTANA.blit(FONDO, (0, 0))
     for i in range(len(tablero)):
         for j in range(len(tablero[i])):
@@ -29,10 +30,10 @@ def graficar_tablero(VENTANA,FONDO,equis,circulo,coor,tablero):
             elif tablero[i][j] == "O":
                 dibujar_x_o(VENTANA,circulo,coor,i,j)
 
-def dibujar_x_o(VENTANA,ficha,coor,i, j):
+def dibujar_x_o(VENTANA,ficha,coor,i, j) -> None:
     VENTANA.blit(ficha, coor[i][j])
 
-def obtener_celda(event):
+def obtener_celda(event:pygame.event) -> tuple[int | None, int | None]:
     mouse_x, mouse_y = event.pos
 
     if not (90 <= mouse_x < 680 and 60 <= mouse_y < 540):
@@ -49,7 +50,7 @@ def mostrar_resultado(VENTANA, FONDO, equis, circulo, coor, tablero, FUENTE, men
     pygame.display.update()
     return esperar_salida_final()
 
-def mostrar_minijuego(VENTANA,FUENTE):
+def mostrar_minijuego(VENTANA:pygame.surface, FUENTE:pygame.font):
     FONDO_MINIJUEGO, circulo, equis, coor = parametros_minijuego()
     FONDO = pygame.transform.scale(FONDO_MINIJUEGO, VENTANA.get_size())
     tablero = crear_matriz(3, 3, " ")

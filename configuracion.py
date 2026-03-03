@@ -1,5 +1,8 @@
 import json
 from ingresos import pedir_numero
+
+
+
 def leer_configuracion(path: str) -> dict:
     try:
         with open(path, 'r') as archivo:
@@ -10,12 +13,13 @@ def leer_configuracion(path: str) -> dict:
         print(f"Error al leer el archivo Json de configuracion")
     return configuracion
 
-def mostrar_configuracion(config:dict):
+
+def mostrar_configuracion(config:dict) -> None:
     print("\nCONFIGURACIÓN ACTUAL:")
     print(f"1️ Cantidad de preguntas: {config['cantidad_preguntas']}")
     print(f"2️ Tiempo por pregunta (segundos): {config['tiempo_por_pregunta']}")
     print(f"3️ Vidas por jugador: {config['vidas']}")
-    
+
 
 def pedir_nueva_configuracion(config: dict) -> dict:
     print("\nConfigurar nueva partida (ENTER para mantener valores actuales)\n")
@@ -26,15 +30,16 @@ def pedir_nueva_configuracion(config: dict) -> dict:
 
     return config
 
-def guardar_configuracion(path: str, config: dict):
+
+def guardar_configuracion(path: str, config: dict) -> None:
     try:
         with open(path, 'w') as archivo:
             json.dump(config, archivo, indent=4)
     except Exception as e:
         print(f"Error al guardar la configuración: {e}")
-        
 
-def cambiar_configuracion(path: str):
+
+def cambiar_configuracion(path: str) -> None:
     config = leer_configuracion(path)
     mostrar_configuracion(config)
     config = pedir_nueva_configuracion(config)

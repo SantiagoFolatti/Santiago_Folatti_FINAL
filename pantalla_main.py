@@ -5,9 +5,10 @@ from pantalla_puntajes import mostrar_puntajes
 from pantalla_juego import jugar_pygame
 from datos import leer_preguntas_csv
 from configuracion import leer_configuracion
-from patalla_minijuego import mostrar_minijuego
+from pantalla_minijuego import mostrar_minijuego
 from botones import inicializar_ventana
 from pantalla_input import mostrar_input
+
 
 
 def main():

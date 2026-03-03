@@ -3,16 +3,19 @@ def obtener_dificultad() -> str:
     while dificultad != "Facil" and dificultad != "Media" and dificultad != "Dificil":
         dificultad = input("Dificultad invalida, ingrese (Facil, Media, Dificil): ").strip().capitalize()
     return dificultad
-    
-def leer_respuesta():
+
+
+def leer_respuesta() -> str:
     respuesta = input("Ingrese su respuesta [A,B,C]: ").upper()
     while respuesta != "A" and respuesta != "B" and respuesta != "C":
         respuesta = input("Elija una opcion correcta [A,B,C]: ").upper()
     return respuesta
 
+
 def ingresar_nombre_jugador() -> str:
     nombre_jugador = input("\nIngrese su nombre de usuario: ").strip()
     return nombre_jugador
+
 
 def pedir_numero(mensaje: str, valor_actual: int) -> int:
     entrada = input(f"{mensaje}: ").strip()

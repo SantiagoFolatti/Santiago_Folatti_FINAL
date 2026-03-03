@@ -8,10 +8,12 @@ from datos import leer_preguntas_csv
 from configuracion import leer_configuracion
 import random
 
-def actualizar_puntajes(jugador: dict, puntos: int, respondida: bool):
+
+def actualizar_puntajes(jugador: dict, puntos: int, respondida: bool) -> None:
     jugador["puntaje_total"] += puntos
     if respondida:
         jugador["respondidas"] += 1
+
 
 def calcular_estadisticas(jugador: dict,limite_preguntas:int) -> dict:
     if jugador["respondidas"] > 0:
@@ -20,7 +22,9 @@ def calcular_estadisticas(jugador: dict,limite_preguntas:int) -> dict:
         jugador["tiempo_promedio"] = jugador["tiempo_total"] / jugador["respondidas"]
     return jugador
 
+
 ################################################################################################################################################
+
 
 def realizar_turno(jugador:dict, pregunta:dict, tiempo_max: int) -> dict:
     mostrar_estado_jugador(jugador,tiempo_max)
@@ -42,7 +46,8 @@ def realizar_turno(jugador:dict, pregunta:dict, tiempo_max: int) -> dict:
     
     return jugador
 
-def verificar_vidas(jugador: dict):
+
+def verificar_vidas(jugador: dict) -> None:
     if jugador["vidas"] == 0:
         mostrar_un_mensaje("Has perdido todas tus vidas. Fin del juego.")
 
@@ -70,7 +75,9 @@ def jugar(preguntas: list, configuracion: dict, dificultad: str) -> dict:
     jugador = calcular_estadisticas(jugador,limite_preguntas)
     return jugador
 
+
 ###############################################################################################################################################
+
 
 def dividir_preguntas(preguntas: list) -> list:
     random.shuffle(preguntas)
@@ -86,7 +93,8 @@ def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, 
     guardar_estadisticas(r"estadisticas.csv", nombre, jugador)
     return jugador
 
-def jugar_preguntas_y_respuestas():
+
+def jugar_preguntas_y_respuestas() -> None:
     mostrar_inicio()
     nombre_jugador_1 = ingresar_nombre_jugador()
     nombre_jugador_2 = ingresar_nombre_jugador()
@@ -101,4 +109,3 @@ def jugar_preguntas_y_respuestas():
     jugador_2 = iniciar_juego_individual(nombre_jugador_2, preguntas_jugador_2, configuracion, dificultad)
     
     mostrar_resultado_final(nombre_jugador_1, jugador_1, nombre_jugador_2, jugador_2)
-    

@@ -2,12 +2,15 @@ from funciones_mostrar import mostrar_un_mensaje
 from ingresos import ingresar_nombre_jugador
 from recorrido import verificar_victoria
 
+
+
 def crear_matriz(filas, columnas, valor_inicial):
     matriz = []
     for i in range(filas):
         fila = [valor_inicial] * columnas
         matriz += [fila]
     return matriz
+
 
 def imprimir_tablero(tablero):
     mostrar_un_mensaje("\n   0   1   2")
@@ -19,6 +22,7 @@ def imprimir_tablero(tablero):
         mostrar_un_mensaje(linea)
         mostrar_un_mensaje("  -----------")
 
+
 def pedir_entero(texto: str) -> int:
     numero_valido = False
     while not numero_valido:
@@ -28,6 +32,7 @@ def pedir_entero(texto: str) -> int:
                 numero_valido = True
                 numero = int(entrada)  
     return numero
+
 
 def pedir_posicion(tablero, jugador, nombre):
     mostrar_un_mensaje(f"\nTurno de {nombre} ({jugador})")
@@ -47,6 +52,7 @@ def pedir_posicion(tablero, jugador, nombre):
         posicion = fila, columna
     return posicion
 
+
 def movimientos_disponibles(tablero):
     disponibles = []
     for i in range(3):
@@ -55,10 +61,12 @@ def movimientos_disponibles(tablero):
                 disponibles += [[i, j]]
     return disponibles
 
+
 def swap(lista, i, j):
     aux = lista[i]
     lista[i] = lista[j]
     lista[j] = aux
+
 
 def ordenar_movimientos(movs, i=0):
     if i == len(movs) - 1:
@@ -81,25 +89,29 @@ def mostrar_resultado(tablero, ganador, nombre_x, nombre_o):
     else:
         mostrar_un_mensaje("\n¡Empate! ")
 
-def asignar_nombre(jugador, nombre_x, nombre_o):
+
+def asignar_nombre(jugador:str, nombre_x:str, nombre_o:str) -> str:
     if jugador == "X":
         nombre = nombre_x
     else:
         nombre = nombre_o
     return nombre
 
-def cambiar_jugador(jugador):
+
+def cambiar_jugador(jugador:str) -> str:
     if jugador == "X":
         jugador = "O"
     else:
         jugador = "X"
     return jugador
-        
-def mosrar_movimientos_disponibles(tablero,disponibles):
+
+
+def mosrar_movimientos_disponibles(disponibles):
     for mov in disponibles:
         mostrar_un_mensaje(f"[{mov[0]}, {mov[1]}]")
-        
-def juego():
+
+
+def juego() -> None:
     nombre_x = ingresar_nombre_jugador()
     nombre_o = ingresar_nombre_jugador()
     tablero = crear_matriz(3, 3, " ")
