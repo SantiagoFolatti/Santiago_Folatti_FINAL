@@ -1,18 +1,18 @@
 import pygame
-from minijuego import crear_matriz,cambiar_jugador
-from recorrido import verificar_victoria,verificar_empate
-from pantalla_configuracion import dibujar_texto
-from colores_enum import Color
-from pantalla_juego import esperar_salida_final
+from Logica.minijuego import crear_matriz,cambiar_jugador
+from Logica.recorrido import verificar_victoria,verificar_empate
+from Juego.pantalla_configuracion import dibujar_texto
+from Juego.colores_enum import Color
+from Juego.pantalla_juego import esperar_salida_final
 
 
 
 def parametros_minijuego():
-    FONDO_MINIJUEGO = pygame.image.load(r"imagenes_sonidospygame\tictactoe_background.png")
+    FONDO_MINIJUEGO = pygame.image.load(r"imagenes_sonidos\minijuego.png")
 
-    circulo = pygame.image.load(r"imagenes_sonidospygame\circle.png")
+    circulo = pygame.image.load(r"imagenes_sonidos\circulo.png")
     circulo = pygame.transform.scale(circulo, (130, 130))
-    equis = pygame.image.load(r"imagenes_sonidospygame\x (1).png")
+    equis = pygame.image.load(r"imagenes_sonidos\equis.png")
     equis = pygame.transform.scale(equis, (130, 130))
 
     coor = [[(115, 80), (335, 80), (555, 80)],

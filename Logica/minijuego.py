@@ -1,6 +1,6 @@
-from funciones_mostrar import mostrar_un_mensaje
-from ingresos import ingresar_nombre_jugador
-from recorrido import verificar_victoria
+from Logica.mostrar import mostrar_un_mensaje
+from Logica.ingresos import ingresar_nombre_jugador
+from Logica.recorrido import verificar_victoria
 
 
 
@@ -106,7 +106,7 @@ def cambiar_jugador(jugador:str) -> str:
     return jugador
 
 
-def mosrar_movimientos_disponibles(disponibles):
+def mostrar_movimientos_disponibles(disponibles):
     for mov in disponibles:
         mostrar_un_mensaje(f"[{mov[0]}, {mov[1]}]")
 
@@ -123,7 +123,7 @@ def juego() -> None:
         imprimir_tablero(tablero)
         mostrar_un_mensaje(" Movimientos disponibles:")
         disponibles = ordenar_movimientos(movimientos_disponibles(tablero))
-        mosrar_movimientos_disponibles(tablero, disponibles)
+        mostrar_movimientos_disponibles(disponibles)
         
         nombre = asignar_nombre(jugador, nombre_x, nombre_o)
         fila, columna = pedir_posicion(tablero, jugador, nombre)

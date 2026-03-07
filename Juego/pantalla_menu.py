@@ -1,5 +1,5 @@
 import pygame
-from botones import botones_menu,detectar_click, dibujar_lista_botones
+from Juego.botones import botones_menu,detectar_click, dibujar_lista_botones
 
 
 

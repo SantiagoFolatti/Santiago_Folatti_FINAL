@@ -1,12 +1,12 @@
 import pygame
-from botones import botones_opciones,dibujar_lista_botones,detectar_click,repintar_boton
-from colores_enum import Color
-from pantalla_configuracion import dibujar_texto,dibujar_texto_centrado
-from funcion_jugar import calcular_estadisticas, actualizar_puntajes,dividir_preguntas
-from estado_jugador import inicializar_jugador,aplicar_multiplicador,procesar_estado_mensaje
-from rondas import evaluar_respuesta
-from estadisticas import guardar_estadisticas
-from funciones_categorias import seleccionar_preguntas_dificultad
+from Juego.botones import botones_opciones,dibujar_lista_botones,detectar_click,repintar_boton
+from Juego.colores_enum import Color
+from Juego.pantalla_configuracion import dibujar_texto,dibujar_texto_centrado
+from Logica.jugar import calcular_estadisticas, actualizar_puntajes,dividir_preguntas
+from Logica.estado_jugador import inicializar_jugador,aplicar_multiplicador,procesar_estado_mensaje
+from Logica.rondas import evaluar_respuesta
+from Logica.estadisticas import guardar_estadisticas
+from Logica.categorias import seleccionar_preguntas_dificultad
 
 
 
@@ -29,9 +29,9 @@ def dibujar_botones_respuesta(botones: dict, pregunta: dict, seleccion=None) -> 
 
 
 def dibujar_corazones(VENTANA:pygame.surface, vidas_actuales:int, vidas_maximas:int) -> None:
-    corazon = pygame.image.load(r"imagenes_sonidospygame\corazon.png")
+    corazon = pygame.image.load(r"imagenes_sonidos\corazon.png")
     corazon = pygame.transform.scale(corazon,(40,40))
-    corazon_roto = pygame.image.load(r"imagenes_sonidospygame\corazonroto.webp")
+    corazon_roto = pygame.image.load(r"imagenes_sonidos\corazon_roto.webp")
     corazon_roto = pygame.transform.scale(corazon_roto,(40,40))
     
     for i in range(vidas_maximas):
@@ -57,14 +57,14 @@ def dibujar_tiempo(VENTANA:pygame.surface, FUENTE:pygame.font,
 def dibujar_juego(VENTANA:pygame.surface, FUENTE:pygame.font,pregunta: dict, 
     botones: dict,configuracion:dict,jugador:dict,tiempo_restante:float, seleccion=None) -> None:
     
-    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PREGUNTAS.png")
+    FONDO = pygame.image.load(r"imagenes_sonidos\preguntas.png")
     VENTANA.blit(FONDO,(0,0))
     
     dibujar_pregunta(VENTANA,FUENTE,pregunta)
     dibujar_botones_respuesta(botones, pregunta, seleccion)
     dibujar_corazones(VENTANA,jugador["vidas"],configuracion["vidas"])
     dibujar_tiempo(VENTANA,FUENTE,tiempo_restante,Color.VERDE.value)
-    dibujar_texto_centrado(VENTANA,FUENTE,f"Turno {jugador["nombre"]}",15,Color.TEXTO.value)
+    dibujar_texto_centrado(VENTANA,FUENTE,f"Turno {jugador['nombre']}",15,Color.TEXTO.value)
     pygame.display.flip()
 
 
@@ -78,7 +78,7 @@ def dibujar_ganador(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores:dict) 
 
 
 def dibujar_pantalla_final(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores:dict) -> None:
-    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO PUNTAJES.png")
+    FONDO = pygame.image.load(r"imagenes_sonidos\ganador.png")
     FONDO = pygame.transform.scale(FONDO,(800,600))
     VENTANA.blit(FONDO,(0,0))
     
@@ -94,7 +94,7 @@ def dibujar_pantalla_final(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores
 def finalizar_juego(VENTANA:pygame.surface, FUENTE:pygame.font, jugadores: list, limite_preguntas: int) -> None:
     for jugador in jugadores:
         calcular_estadisticas(jugador, limite_preguntas)
-        guardar_estadisticas("estadisticas.csv",jugador["nombre"], jugador)
+        guardar_estadisticas(r"Datos\estadisticas.csv",jugador["nombre"], jugador)
     dibujar_pantalla_final(VENTANA,FUENTE, jugadores)
 
 

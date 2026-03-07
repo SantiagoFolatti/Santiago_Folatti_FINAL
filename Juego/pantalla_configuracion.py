@@ -1,7 +1,7 @@
 import pygame
-from configuracion import leer_configuracion, guardar_configuracion
-from botones import botones_configuracion,repintar_boton,dibujar_lista_botones, detectar_click
-from colores_enum import Color
+from Logica.configuracion import leer_configuracion, guardar_configuracion
+from Juego.botones import botones_configuracion,repintar_boton,dibujar_lista_botones, detectar_click
+from Juego.colores_enum import Color
 
 
 
@@ -29,7 +29,7 @@ def resaltar_dificultad(botones:dict, config:dict) -> None:
 
 
 def dibujar_configuracion(VENTANA:pygame.surface, FUENTE:pygame.font.Font, config:dict, botones:dict) -> None:
-    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO CONFIGURACION.png")
+    FONDO = pygame.image.load(r"imagenes_sonidos\configuracion.png")
     FONDO = pygame.transform.scale(FONDO,(800,600))
     VENTANA.blit(FONDO,(0,0))
     

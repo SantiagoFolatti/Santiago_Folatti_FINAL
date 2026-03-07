@@ -1,7 +1,7 @@
 import pygame
-from colores_enum import Color
-from pantalla_configuracion import dibujar_texto_centrado
-from botones import botones_input,dibujar_lista_botones
+from Juego.colores_enum import Color
+from Juego.pantalla_configuracion import dibujar_texto_centrado
+from Juego.botones import botones_input,dibujar_lista_botones
 
 
 

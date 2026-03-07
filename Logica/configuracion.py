@@ -1,5 +1,5 @@
 import json
-from ingresos import pedir_numero
+from Logica.ingresos import pedir_numero
 
 
 

@@ -1,5 +1,5 @@
 import time
-from ingresos import leer_respuesta
+from Logica.ingresos import leer_respuesta
 
 
 

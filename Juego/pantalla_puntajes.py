@@ -1,7 +1,7 @@
 import pygame
-from estadisticas import leer_estadisticas, ordenar_estadisticas_por_puntaje
-from colores_enum import Color
-from pantalla_configuracion import dibujar_texto,dibujar_texto_centrado
+from Logica.estadisticas import leer_estadisticas, ordenar_estadisticas_por_puntaje
+from Juego.colores_enum import Color
+from Juego.pantalla_configuracion import dibujar_texto,dibujar_texto_centrado
 
 
 
@@ -13,7 +13,7 @@ def dibujar_encabezados(VENTANA:pygame.surface, FUENTE:pygame.font) -> None:
         dibujar_texto(VENTANA,FUENTE,encabezados[i],x[i],100,Color.TEXTO.value)
 
 
-def dibujar_nombre_podio(VENTANA,FUENTE,datos,x,y,puesto):
+def dibujar_nombre_podio(VENTANA:pygame.surface, FUENTE:pygame.font, datos:list, x:int, y:int, puesto:int) -> None:
     colores_podio = [Color.DORADO.value, Color.PLATA.value, Color.BRONCE.value]
     
     if puesto < len(colores_podio):
@@ -24,7 +24,7 @@ def dibujar_nombre_podio(VENTANA,FUENTE,datos,x,y,puesto):
     dibujar_texto(VENTANA,FUENTE,datos[0],x[0],y,color_nombre)
 
 
-def dibujar_fila(VENTANA,FUENTE,jugador,y,puesto):
+def dibujar_fila(VENTANA:pygame.surface, FUENTE:pygame.font, jugador:dict, y:int, puesto:int) -> None:
     datos = [jugador["jugador"], str(jugador["puntaje_total"]), str(jugador["racha_maxima_correctas"]), str(jugador["vidas"])]
     x = [120, 320, 480, 640]
     
@@ -34,7 +34,7 @@ def dibujar_fila(VENTANA,FUENTE,jugador,y,puesto):
         dibujar_texto(VENTANA,FUENTE,datos[i],x[i],y,Color.TEXTO.value)
 
 
-def dibujar_jugadores(VENTANA,FUENTE,estadisticas):
+def dibujar_jugadores(VENTANA:pygame.surface, FUENTE:pygame.font, estadisticas:list) -> None:
     y = 140
     puesto = 0
     for jugador in estadisticas[:5]:
@@ -43,8 +43,8 @@ def dibujar_jugadores(VENTANA,FUENTE,estadisticas):
         puesto += 1
 
 
-def dibujar_puntajes(VENTANA,FUENTE,estadisticas):
-    FONDO = pygame.image.load(r"imagenes_sonidospygame\FONDO TOPS (2).png")
+def dibujar_puntajes(VENTANA:pygame.surface, FUENTE:pygame.font, estadisticas:list) -> None:
+    FONDO = pygame.image.load(r"imagenes_sonidos\puntajes.png")
     FONDO = pygame.transform.scale(FONDO,(800,600))
     VENTANA.blit(FONDO,(0,0))
     dibujar_texto_centrado(VENTANA,FUENTE,"Ranking de Jugadores",20,Color.TEXTO.value)
@@ -54,7 +54,7 @@ def dibujar_puntajes(VENTANA,FUENTE,estadisticas):
     pygame.display.update()
     
 
-def mostrar_puntajes(VENTANA,FUENTE,path):
+def mostrar_puntajes(VENTANA:pygame.surface, FUENTE:pygame.font, path:str) -> str:
     estadisticas = leer_estadisticas(path)
     ordenar_estadisticas_por_puntaje(estadisticas)
 

@@ -1,11 +1,11 @@
-from funciones_mostrar import *
-from funciones_categorias import seleccionar_pregunta_por_categoria
-from rondas import jugar_ronda
-from estado_jugador import aplicar_multiplicador, procesar_estado_mensaje, inicializar_jugador
-from ingresos import ingresar_nombre_jugador, obtener_dificultad
-from estadisticas import guardar_estadisticas
-from datos import leer_preguntas_csv
-from configuracion import leer_configuracion
+from Logica.mostrar import *
+from Logica.categorias import seleccionar_pregunta_por_categoria
+from Logica.rondas import jugar_ronda
+from Logica.estado_jugador import aplicar_multiplicador, procesar_estado_mensaje, inicializar_jugador
+from Logica.ingresos import ingresar_nombre_jugador, obtener_dificultad
+from Logica.estadisticas import guardar_estadisticas
+from Logica.datos import leer_preguntas_csv
+from Logica.configuracion import leer_configuracion
 import random
 
 
@@ -90,7 +90,7 @@ def dividir_preguntas(preguntas: list) -> list:
 def iniciar_juego_individual(nombre: str, preguntas: list, configuracion: dict, dificultad: str) -> dict:
     mostrar_un_mensaje(f"Turno del jugador {nombre}")
     jugador = jugar(preguntas, configuracion, dificultad)
-    guardar_estadisticas(r"estadisticas.csv", nombre, jugador)
+    guardar_estadisticas(r"Datos\estadisticas.csv", nombre, jugador)
     return jugador
 
 
@@ -98,8 +98,8 @@ def jugar_preguntas_y_respuestas() -> None:
     mostrar_inicio()
     nombre_jugador_1 = ingresar_nombre_jugador()
     nombre_jugador_2 = ingresar_nombre_jugador()
-    preguntas = leer_preguntas_csv(r"preguntas.csv")
-    configuracion = leer_configuracion(r"config.json")
+    preguntas = leer_preguntas_csv(r"Datos\preguntas.csv")
+    configuracion = leer_configuracion(r"Datos\config.json")
     dificultad = obtener_dificultad()
     
     preguntas_jugador_1, preguntas_jugador_2 = dividir_preguntas(preguntas)

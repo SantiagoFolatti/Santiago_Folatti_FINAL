@@ -1,4 +1,4 @@
-from funciones_categorias import listar_categoria
+from Logica.categorias import listar_categoria
 import os
 
 

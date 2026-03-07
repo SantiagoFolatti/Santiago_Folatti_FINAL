@@ -1,10 +1,10 @@
 import pygame
-from colores_enum import Color
+from Juego.colores_enum import Color
 
 def inicializar_ventana(ancho=800, alto=600, titulo="TRIVIA PELÍCULAS", 
-    ruta_fondo=r"imagenes_sonidospygame\FONDO1.png",
-    ruta_icono=r"imagenes_sonidospygame\utn_icono.jpg", 
-    ruta_sonido_click=r"imagenes_sonidospygame\mouse-click-290204.mp3",
+    ruta_fondo=r"imagenes_sonidos\menu.png",
+    ruta_icono=r"imagenes_sonidos\icono.jpg", 
+    ruta_sonido_click=r"imagenes_sonidos\click.mp3",
     tipo_fuente="Comic Sans", tamaño_fuente=28):
 
     pygame.init()
@@ -132,12 +132,12 @@ def botones_menu(VENTANA) -> dict:
 
 def botones_configuracion(VENTANA) -> dict:
     botones_config = {
-        "menos_preguntas": crear_boton(VENTANA,(45, 45), (490, 125),imagen=r"imagenes_sonidospygame\-.png"),
-        "mas_preguntas":   crear_boton(VENTANA,(45, 45), (550, 125),imagen=r"imagenes_sonidospygame\+.png"),
-        "menos_tiempo":    crear_boton(VENTANA,(45, 45), (490, 205),imagen=r"imagenes_sonidospygame\-.png"),
-        "mas_tiempo":      crear_boton(VENTANA,(45, 45), (550, 205),imagen=r"imagenes_sonidospygame\+.png"),
-        "menos_vidas":     crear_boton(VENTANA,(45, 45), (490, 285),imagen=r"imagenes_sonidospygame\-.png"),
-        "mas_vidas":       crear_boton(VENTANA,(45, 45), (550, 285),imagen=r"imagenes_sonidospygame\+.png"),
+        "menos_preguntas": crear_boton(VENTANA,(45, 45), (490, 125),imagen=r"imagenes_sonidos\-.png"),
+        "mas_preguntas":   crear_boton(VENTANA,(45, 45), (550, 125),imagen=r"imagenes_sonidos\+.png"),
+        "menos_tiempo":    crear_boton(VENTANA,(45, 45), (490, 205),imagen=r"imagenes_sonidos\-.png"),
+        "mas_tiempo":      crear_boton(VENTANA,(45, 45), (550, 205),imagen=r"imagenes_sonidos\+.png"),
+        "menos_vidas":     crear_boton(VENTANA,(45, 45), (490, 285),imagen=r"imagenes_sonidos\-.png"),
+        "mas_vidas":       crear_boton(VENTANA,(45, 45), (550, 285),imagen=r"imagenes_sonidos\+.png"),
         "guardar":         crear_boton(VENTANA,(180, 60), (580, 500),"grey","grey",("comic sans", 35),"Guardar","white"),
         "salir":           crear_boton(VENTANA,(180, 60), (20, 500),"grey","grey",("comic sans", 35),"Salir","white"),
         "Facil":           crear_boton(VENTANA,(150, 50), (150, 380),"grey","grey",("comic sans", 30),"Fácil","white"),
